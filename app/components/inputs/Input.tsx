@@ -72,7 +72,7 @@ const Input = ({ id, label, type, disabled, formatPrice, required, register, err
       `}
       >        
         {label}
-        {required && <span className="text-rose-500">*</span>}
+        {/* {required && <span className="text-rose-500">*</span>} */}
         
       </label>
     </div>
