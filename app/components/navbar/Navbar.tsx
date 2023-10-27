@@ -17,11 +17,12 @@ const Navbar = ({ currentUser }: NavbarProps) => {
 
 
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm">
+    <div className="fixed w-full z-10">
       <div
         className="
         py-4
-        border-b-[1px]">
+        ">
+          
         <Container>
           <div
             className="
@@ -30,7 +31,7 @@ const Navbar = ({ currentUser }: NavbarProps) => {
             items-center
             justify-between
             gap-3
-            md:gap-0
+            md:gap-0          
             ">
             {/* <Logo /> */}
             <HomeLogo />

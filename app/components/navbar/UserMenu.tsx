@@ -57,7 +57,7 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             transition
             cursor-pointer
             ">
-          {/* Airbnb your home */}
+          Coworking Bangkok
         </div>
         <div
           //   onClick={toggleOpen}
