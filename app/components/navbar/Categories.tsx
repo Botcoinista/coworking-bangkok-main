@@ -113,6 +113,9 @@ const Categories = () => {
    
         <Container>
             <div className='
+            bg-white
+            rounded-tr-3xl
+            rounded-bl-2xl
             pt-4
             flex
             flex-row

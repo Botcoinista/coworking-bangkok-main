@@ -10,6 +10,8 @@ import RentModal from "./components/modals/RentModal";
 
 import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
+import Categories from "./components/navbar/Categories";
+import Container from "./components/Container";
 
 export const metadata: Metadata = {
   title: "Coworking bangkok",
