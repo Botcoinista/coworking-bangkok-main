@@ -8,6 +8,7 @@ import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
+import { IoLocationOutline } from "react-icons/io5";
 import Button from "../Button";
 
 interface ListingCardProps {
@@ -70,22 +71,31 @@ const ListingCard = ({
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
       className="
-  
-  col-span-1
-  cursor-pointer
-  group
-  "
+        col-span-1
+        cursor-pointer
+        group
+        "
     >
-      <div className="flex flex-col gap-2 w-full">
+      <div
+        className="
+        flex
+        flex-col
+        border-2
+        border-gray-900
+        rounded-tr-2xl
+        rounded-bl-2xl
+        overflow-hidden
+        h-full
+        "
+        style={{
+            height: '600px', // adjust based on your design requirements
+          }}
+      >
         <div
           className="
-    aspect-square
-    relative
-    rounded-tr-2xl
-    rounded-bl-2xl
-    overflow-hidden
-    w-full
-    "
+            h-full
+            relative   
+            "
         >
           <Image
             fill
@@ -93,39 +103,41 @@ const ListingCard = ({
             alt="Listing"
             className="
             object-cover
-            h-full
-            w-full
             transition
-            group-hover:scale-110
+            group-hover:scale-110   
             "
           />
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-2 left-2">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
-        </div>
-        <div className="font-semibold text-lg">
-          {location?.region}, {location?.label}
-        </div>
-        <div className="font-light text-neutral-500">
-            {reservationDate || data.category}
-
-        </div>
-        <div className="flex flex-row items-center gap-1">
-            <div className="font-semibold">
-                ${price}
-
+          <div
+            style={{
+              background:
+                "linear-gradient(180deg, #FFFFFF 58.85%, rgba(255, 255, 255, 0.00) 100%)",
+            }}
+            className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-2xl rounded-bl-2xl p-3 bg-red-100"
+          >
+            <div className="font-semibold text-lg mb-3">
+              {location?.region}, {location?.label}
             </div>
-            {!reservation && (
-                <div className="font-light">night</div>
-            )}
+            <div className="flex flex-row gap-1 font-light text-neutral-500 mb-3">
+            <IoLocationOutline /> {reservationDate || data.category} 
+            </div>
+            <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
+              <div className="font-semibold">${price}</div>
+              {!reservation && <div className="font-light">/Week</div>}
+            </div>
+          </div>
         </div>
+        <div></div>
+
         {onAction && actionLabel && (
-            <Button
-                disabled={disabled}
-                small
-                label={actionLabel}
-                onClick={handleCancel()}
-            />
+          <Button
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel()}
+          />
         )}
       </div>
     </div>

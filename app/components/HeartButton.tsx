@@ -1,6 +1,6 @@
 "use client";
 
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiFillStar } from "react-icons/ai";
 import { SafeUser } from "../types";
 
 interface HeartButtonProps {
@@ -25,7 +25,7 @@ const HeartButton = ({ listingId, currentUser }:HeartButtonProps) => {
         "
         >
 
-        <AiOutlineHeart
+        {/* <AiOutlineHeart
             size={28}
             className="
             absolute
@@ -37,7 +37,12 @@ const HeartButton = ({ listingId, currentUser }:HeartButtonProps) => {
         className={
             hasFavorited ? 'fill-red-500' : 'fill-neutral-500/70'
         }
-        />
+        /> */}
+        <AiFillStar 
+          size={28}
+          className={
+              hasFavorited ? 'fill-yellow-500' : 'fill-yellow-500'
+          }/>
     </div>
   )
 }
