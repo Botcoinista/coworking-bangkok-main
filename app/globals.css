@@ -6,8 +6,8 @@ html,
 body,
 :root {
   height: 100%;
-  font-family: 'Comic Sans MS'
-},
+  font-family: 'Poppins', 'sans-serif','rajhadi';
+};
 
 
 .leaflet-bottom,

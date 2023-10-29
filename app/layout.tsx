@@ -12,6 +12,7 @@ import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import Categories from "./components/navbar/Categories";
 import Container from "./components/Container";
+import Hero from "./components/Hero";
 
 export const metadata: Metadata = {
   title: "Coworking bangkok",
@@ -39,7 +40,8 @@ export default async function RootLayout({
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         <HomeBackground />
-        <div className="pb-20 pt-28">{children}</div>
+        <Hero />
+        <div className="pb-20 pt-10">{children}</div>
       </body>
     </html>
   );

@@ -117,15 +117,15 @@ const ListingCard = ({
             }}
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
-            <div className="font-semibold text-lg mb-3">
+            <div className="font-rajhadi font-semibold text-lg mb-3">
               {location?.region}, {location?.label}
             </div>
-            <div className="sans flex flex-row gap-1 font-light text-neutral-500 mb-3">
+            <div className="font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
             <IoLocationOutline /> {reservationDate || data.category} 
             </div>
             <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
-              <div className="font-semibold">${price}</div>
-              {!reservation && <div className="font-light">/Week</div>}
+              <div className="font-poppins font-bold">${price}</div>
+              {!reservation && <div className="font-poppins font-bold">/Week</div>}
             </div>
           </div>
         </div>
