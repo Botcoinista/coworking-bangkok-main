@@ -82,13 +82,13 @@ const ListingCard = ({
         flex-col
         border-2
         border-gray-900
-        rounded-tr-2xl
-        rounded-bl-2xl
+        rounded-tr-4xl
+        rounded-bl-4xl
         overflow-hidden
         h-full
         "
         style={{
-            height: '600px', // adjust based on your design requirements
+            height: '600px',
           }}
       >
         <div
@@ -115,12 +115,12 @@ const ListingCard = ({
               background:
                 "linear-gradient(180deg, #FFFFFF 58.85%, rgba(255, 255, 255, 0.00) 100%)",
             }}
-            className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-2xl rounded-bl-2xl p-3 bg-red-100"
+            className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
             <div className="font-semibold text-lg mb-3">
               {location?.region}, {location?.label}
             </div>
-            <div className="flex flex-row gap-1 font-light text-neutral-500 mb-3">
+            <div className="sans flex flex-row gap-1 font-light text-neutral-500 mb-3">
             <IoLocationOutline /> {reservationDate || data.category} 
             </div>
             <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
