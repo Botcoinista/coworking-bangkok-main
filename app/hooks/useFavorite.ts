@@ -29,7 +29,12 @@ const useFavorite = ({
             let request;
             if (hasFavorited) {
                 request = () => axios.delete(`/api/favorites/${listingId}`);
-                toast.success('Removed from favorites!');
+                toast.success('Removed from favorites!',  {
+                    style: {
+                        background: '#f56565', // This is the TailwindCSS color for red-500. You can use any other red color code.
+                        color: '#ffffff',
+                    },
+                });
             } else {
                 request = () => axios.post(`/api/favorites/${listingId}`);
                 toast.success('Added to favorites!');
