@@ -1,44 +1,42 @@
-'use client';
+"use client";
 
-import { FiLogOut } from 'react-icons/fi';
-import { BiSolidUser } from 'react-icons/bi';
-import { AiOutlineMenu } from 'react-icons/ai';
-import Avatar from '../Avatar';
-import { useCallback, useState } from 'react';
-import { signOut } from 'next-auth/react';
+import { FiLogOut } from "react-icons/fi";
+import { BiSolidUser } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
+import Avatar from "../Avatar";
+import { useCallback, useState } from "react";
+import { signOut } from "next-auth/react";
 
-import MenuItem from './MenuItem';
+import MenuItem from "./MenuItem";
 
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
-import useRentModal from '@/app/hooks/useRentModl';
-import { SafeUser } from '@/app/types';
-
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRentModal from "@/app/hooks/useRentModal";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-  currentUser?: SafeUser | null
+  currentUser?: SafeUser | null;
 }
 
-const UserMenu = ({ currentUser }: UserMenuProps ) => {
-  currentUser
+const UserMenu = ({ currentUser }: UserMenuProps) => {
+  currentUser;
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
 
-    const[isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const toggleOpen = useCallback(() => {
-        setIsOpen((value) => !value);
-    }, []);
+  const toggleOpen = useCallback(() => {
+    setIsOpen((value) => !value);
+  }, []);
 
-    const onRent = useCallback(() => {
-      if (!currentUser) {
-        return loginModal.onOpen(); 
-      }
-      rentModal.onOpen();
-    }, [currentUser, loginModal, rentModal]);
-
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div className="relative">
@@ -56,7 +54,8 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             hover:bg-neutral-100
             transition
             cursor-pointer
-            ">
+            "
+        >
           Coworking Bangkok
         </div>
         <div
@@ -75,7 +74,8 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             cursor-pointer
             hover:shadow-md
             transition
-          ">
+          "
+        >
           <AiOutlineMenu />
         </div>
         <div
@@ -94,9 +94,12 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             cursor-pointer
             hover:shadow-md
             transition
-            ">
+            "
+        >
           {/* <BiSolidUser /> */}
-          <div className="hidden md:block"><Avatar src={currentUser?.image} /></div>
+          <div className="hidden md:block">
+            <Avatar src={currentUser?.image} />
+          </div>
         </div>
         <div
           onClick={() => {}}
@@ -114,7 +117,8 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             cursor-pointer
             hover:shadow-md
             transition
-            ">
+            "
+        >
           <FiLogOut />
           {/* <div className="hidden md:block"><Avatar /></div> */}
         </div>
@@ -133,7 +137,8 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
             right-0
             top-12
             text-sm
-            ">
+            "
+        >
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
@@ -141,7 +146,10 @@ const UserMenu = ({ currentUser }: UserMenuProps ) => {
                 <MenuItem onClick={() => {}} label="My favorites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My Properties" />
-                <MenuItem onClick={rentModal.onOpen} label="Co working bangkok home" />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label="Co working bangkok home"
+                />
                 <MenuItem onClick={() => signOut()} label="Logout" />
                 {/* <MenuItem onClick={() => {}} label="Account" /> */}
               </>

@@ -1,6 +1,6 @@
 "use client";
 
-import useRentModal from "@/app/hooks/useRentModl";
+import useRentModal from "@/app/hooks/useRentModal";
 import Modal from "./Modal";
 import { useMemo, useState } from "react";
 import Heading from "../Heading";
@@ -13,9 +13,8 @@ import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
 import axios from "axios";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
 
 enum STEPS {
   CATEGORY = 0,
@@ -31,7 +30,7 @@ const RentModal = () => {
   const rentModal = useRentModal();
 
   const [step, setStep] = useState(STEPS.CATEGORY);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -61,9 +60,13 @@ const RentModal = () => {
   const bathroomCount = watch("bathroomCount");
   const imageSrc = watch("imageSrc");
 
-  const Map = useMemo(() => dynamic(() => import('../Map'), { 
-    ssr: false 
-  }), [location]);
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -88,21 +91,22 @@ const RentModal = () => {
 
     setIsLoading(true);
 
-    axios.post('/api/listings', data)
-    .then(() => {
-      toast.success("Listing created successfully!");
-      router.refresh();
-      reset();
-      setStep(STEPS.CATEGORY);
-      rentModal.onClose();
-    })
-    .catch(() => {
-      toast.error("Something went wrong!");
-    }).finally(() => {
-      setIsLoading(false);
-    })
-
-  }
+    axios
+      .post("/api/listings", data)
+      .then(() => {
+        toast.success("Listing created successfully!");
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch(() => {
+        toast.error("Something went wrong!");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
@@ -135,11 +139,10 @@ const RentModal = () => {
                 overflow-y-auto
                 "
       >
-          {categories.map((item) => (
+        {categories.map((item) => (
           <div key={item.label} className="col-span-1">
             <CategoryInput
-              onClick={(category) => 
-                setCustomValue('category', category)}
+              onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}
               label={item.label}
               icon={item.icon}
@@ -148,7 +151,7 @@ const RentModal = () => {
         ))}
       </div>
     </div>
-  )
+  );
 
   if (step === STEPS.LOCATION) {
     bodyContent = (
@@ -158,12 +161,10 @@ const RentModal = () => {
           subtitle="Guests will only get your exact address after they’ve booked a reservation."
         />
         <CountrySelect
-        value={location}
+          value={location}
           onChange={(value) => setCustomValue("location", value)}
         />
-        <Map
-            center={location?.latlng} 
-            />
+        <Map center={location?.latlng} />
       </div>
     );
   }
@@ -175,28 +176,28 @@ const RentModal = () => {
           title="How many guests can your place accommodate?"
           subtitle="You can always change this later."
         />
-        <Counter 
-          title = "Guests"
+        <Counter
+          title="Guests"
           subtitle="How many guests do you allow?"
           value={guestCount}
           onChange={(value) => setCustomValue("guestCount", value)}
         />
         <hr />
-        <Counter 
-          title = "Rooms"
+        <Counter
+          title="Rooms"
           subtitle="How many rooms do you have?"
           value={roomCount}
           onChange={(value) => setCustomValue("roomCount", value)}
         />
         <hr />
-        <Counter 
-          title = "Bathrooms"
+        <Counter
+          title="Bathrooms"
           subtitle="How many bathrooms do you have?"
           value={bathroomCount}
           onChange={(value) => setCustomValue("bathroomCount", value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.IMAGES) {
@@ -206,40 +207,40 @@ const RentModal = () => {
           title="Upload some photos of your place"
           subtitle="Guests are more likely to book your place if you have high-quality photos."
         />
-        <ImageUpload 
-        value={imageSrc}
-        onChange={(value) => setCustomValue("imageSrc", value)}
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomValue("imageSrc", value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (
-     <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8">
         <Heading
           title="Give your place a title and description"
           subtitle="Start with a descriptive title that highlights the most attractive parts of your space."
-          />
-          <Input 
+        />
+        <Input
           id="title"
           label="Title"
           disabled={isLoading}
           register={register}
           errors={errors}
           required
-          />
-          <hr />
-          <Input 
+        />
+        <hr />
+        <Input
           id="description"
           label="Description"
           disabled={isLoading}
           register={register}
           errors={errors}
           required
-          />
-     </div>
-    )
+        />
+      </div>
+    );
   }
 
   if (step === STEPS.PRICE) {
@@ -248,8 +249,8 @@ const RentModal = () => {
         <Heading
           title="How much do you want to charge?"
           subtitle="We can help you set a price based on similar listings in your area, but you can ultimately decide what’s best for you."
-          />
-          <Input 
+        />
+        <Input
           id="price"
           label="Price"
           formatPrice={true}
@@ -258,9 +259,9 @@ const RentModal = () => {
           register={register}
           errors={errors}
           required
-          />
+        />
       </div>
-    )
+    );
   }
 
   return (
