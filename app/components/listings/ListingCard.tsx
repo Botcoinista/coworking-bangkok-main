@@ -10,9 +10,10 @@ import Image from "next/image";
 import HeartButton from "../HeartButton";
 import { IoLocationOutline } from "react-icons/io5";
 import Button from "../Button";
+import RatingStar from "../RatingStar";
 
 interface ListingCardProps {
-  data: SafeListing
+  data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
@@ -88,8 +89,8 @@ const ListingCard = ({
         h-full
         "
         style={{
-            height: '600px',
-          }}
+          height: "600px",
+        }}
       >
         <div
           className="
@@ -108,6 +109,9 @@ const ListingCard = ({
             "
           />
           <div className="absolute top-2 left-2">
+            <RatingStar />
+          </div>
+          <div className="absolute top-2 right-2">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
           <div
@@ -121,11 +125,13 @@ const ListingCard = ({
               {location?.region}, {location?.label}
             </div>
             <div className="font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
-            <IoLocationOutline /> {reservationDate || data.category} 
+              <IoLocationOutline /> {reservationDate || data.category}
             </div>
             <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
               <div className="font-poppins font-bold">${price}</div>
-              {!reservation && <div className="font-poppins font-bold">/Week</div>}
+              {!reservation && (
+                <div className="font-poppins font-bold">/Week</div>
+              )}
             </div>
           </div>
         </div>
