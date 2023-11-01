@@ -13,6 +13,8 @@ import getCurrentUser from "./actions/getCurrentUser";
 import Categories from "./components/navbar/Categories";
 import Container from "./components/Container";
 import Hero from "./components/Hero";
+import Search from "./components/navbar/Search";
+import SearchModal from "./components/modals/SearchModal";
 
 export const metadata: Metadata = {
   title: "Coworking bangkok",
@@ -35,6 +37,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
+        <SearchModal />
         <RentModal />
         <LoginModal />
         <RegisterModal />
