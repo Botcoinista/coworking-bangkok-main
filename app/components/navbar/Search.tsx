@@ -1,10 +1,56 @@
-'use client';
+"use client";
 
-import useSearchModal from "@/app/hooks/useSearchModal";
+import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
+import { useSearchParams } from "next/navigation";
+
+import { differenceInDays } from "date-fns";
+import useSearchModal from "@/app/hooks/useSearchModal";
+import useCountries from "@/app/hooks/useCountries";
 
 const Search = () => {
   const searchModal = useSearchModal();
+  const params = useSearchParams();
+  const { getByValue } = useCountries();
+
+  const locationValue = params?.get("locationValue");
+  const startDate = params?.get("startDate");
+  const endDate = params?.get("endDate");
+  const guestCount = params?.get("guestCount");
+
+  const locationlabel = useMemo(() => {
+    if (locationValue) {
+      return getByValue(locationValue as string)?.label;
+    }
+
+    return "Anywhere";
+  }, [getByValue, locationValue]);
+
+  const durationLabel = useMemo(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate as string);
+      const end = new Date(endDate as string);
+      let diff = differenceInDays(end, start);
+
+      if(diff === 0) {
+        diff = 1
+      }
+
+      return `${diff} days`;
+    }
+
+    return "Any Week";
+  }, [startDate, endDate]);
+
+  const guestLabel = useMemo(() => {
+    if (guestCount) {
+      return `${guestCount} Guests`;
+    }
+
+    return "Add Guests";
+  }, [guestCount]);
+
+
   return (
     <div
       onClick={searchModal.onOpen}
@@ -19,14 +65,16 @@ const Search = () => {
         transition
         cursor-pointer
         bg-lightestGray
-        ">
+        "
+    >
       <div
         className="
         flex
         flex-row
         items-center
         justify-between
-        ">
+        "
+      >
         <div
           className="
         text-sm
@@ -34,10 +82,10 @@ const Search = () => {
         px-6
         "
         >
-            Anywhere
+         {locationlabel}
         </div>
         <div
-        className="
+          className="
         hidden
         sm:block
         text-sm
@@ -48,10 +96,10 @@ const Search = () => {
         text-center
         "
         >
-            Any Week
+          {durationLabel}
         </div>
         <div
-        className="
+          className="
         text-sm
         pl-6
         pr-2
@@ -62,21 +110,21 @@ const Search = () => {
         gap-3
         "
         >
-            <div className="hidden sm:block">Add guests</div>
-            <div
+          <div className="hidden sm:block">{guestLabel}</div>
+          <div
             className="
             p-2
             bg-rose-500
             rounded-full
             text-white
             "
-            >
-                <BiSearch size={18} />
-            </div>
+          >
+            <BiSearch size={18} />
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Search
+export default Search;
