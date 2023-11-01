@@ -74,7 +74,7 @@ const ListingClient = ({
       toast.success("Reservation created successfully");
       setDateRange(initialDateRange);
       //redirect to accounts
-      router.refresh();
+      router.push("/trips");
     })
     .catch(() => {
       toast.error("Reservation failed");

@@ -1,9 +1,10 @@
 "use client";
 
-import { FiLogOut } from "react-icons/fi";
-import { BiSolidUser } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
 import Avatar from "../Avatar";
+import { BiSolidUser } from "react-icons/bi";
 import { useCallback, useState } from "react";
 import { signOut } from "next-auth/react";
 
@@ -21,6 +22,7 @@ interface UserMenuProps {
 const UserMenu = ({ currentUser }: UserMenuProps) => {
   currentUser;
 
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
@@ -142,7 +144,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => {}} label="My Trips" />
+                <MenuItem onClick={() => router.push("/trips")} label="My Trips" />
                 <MenuItem onClick={() => {}} label="My favorites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My Properties" />
