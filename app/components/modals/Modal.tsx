@@ -1,7 +1,8 @@
-'use client';
-import { useCallback, useEffect, useState } from 'react';
-import { IoMdClose } from 'react-icons/io';
-import Button from '../Button';
+"use client";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import Button from "../Button";
+import useOutsideClick from "@/app/hooks/useOutsideClick";
 
 interface ModalProps {
   isOpen: boolean;
@@ -80,7 +81,8 @@ const Modal = ({
     outline-none
     focus:outline-none
     bg-neutral-800/70
-    ">
+    "
+      >
         <div
           className="
             relative
@@ -93,16 +95,18 @@ const Modal = ({
             h-full
             lg:h-auto
             md:h-auto
-            ">
+            "
+        >
           {/*content*/}
           <div
             className={`
             translate
             duration.300
             h-full
-            ${showModal ? 'translate-y-0' : 'translate-y-full'}
-            ${showModal ? 'opacity-100' : 'opacity-0'}
-            `}>
+            ${showModal ? "translate-y-0" : "translate-y-full"}
+            ${showModal ? "opacity-100" : "opacity-0"}
+            `}
+          >
             <div
               className="
                         translate
@@ -120,7 +124,8 @@ const Modal = ({
                         bg-white
                         outline-none
                         focus:outline-none
-                    ">
+                    "
+            >
               {/*header*/}
               <div
                 className="
@@ -131,7 +136,8 @@ const Modal = ({
                   justify-center
                   relative
                   border-b-[1px]
-                  ">
+                  "
+              >
                 <button
                   onClick={handleClose}
                   className="
@@ -141,7 +147,8 @@ const Modal = ({
                     transition
                     absolute
                     right-9
-                    ">
+                    "
+                >
                   <IoMdClose size={18} />
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
@@ -157,13 +164,14 @@ const Modal = ({
                         items-center
                         gap-4
                         w-full
-                        ">
+                        "
+                >
                   {secondaryAction && secondaryActionLabel && (
                     <Button
-                    disabled={disabled}
-                    label={secondaryActionLabel}
-                    onClick={handleSecondaryAction}
-                    outline
+                      disabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                      outline
                     />
                   )}
                   <Button

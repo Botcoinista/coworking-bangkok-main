@@ -4,30 +4,34 @@ import { useRouter } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import Avatar from "../Avatar";
-import { BiSolidUser } from "react-icons/bi";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef, useEffect, MouseEvent } from "react";
 import { signOut } from "next-auth/react";
-
 import MenuItem from "./MenuItem";
-
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRentModal from "@/app/hooks/useRentModal";
 import { SafeUser } from "@/app/types";
+import useOutsideClick from "@/app/hooks/useOutsideClick";
+
+
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
 const UserMenu = ({ currentUser }: UserMenuProps) => {
-  currentUser;
-
   const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
 
   const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  useOutsideClick(wrapperRef, () => {
+    setIsOpen(false);
+  });
+
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -40,8 +44,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
 
+  
+
+
   return (
-    <div className="relative">
+    
+    <div className="relative" ref={wrapperRef}>
       <div className="flex flex-row items-center gap-3">
         <div
           onClick={onRent}
@@ -166,6 +174,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         </div>
       )}
     </div>
+    
   );
 };
 

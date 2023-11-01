@@ -14,6 +14,7 @@ const Search = () => {
         hover:shadow-md
         transition
         cursor-pointer
+        bg-lightestGray
         ">
       <div
         className="
