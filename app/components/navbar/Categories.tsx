@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 
+ 
 import { GrLock } from 'react-icons/gr';
 import { FaMedal } from 'react-icons/fa';
 import { TbToolsKitchen2 } from 'react-icons/tb';

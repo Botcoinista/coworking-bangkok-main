@@ -10,6 +10,7 @@ import HeartButton from "../HeartButton";
 import { IoLocationOutline } from "react-icons/io5";
 import Button from "../Button";
 import RatingStar from "../RatingStar";
+import { IconType } from "react-icons";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -121,7 +122,7 @@ const ListingCard = ({
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
             <div className="font-rajhadi font-semibold text-lg mb-3">
-              {location?.region}, {location?.label}
+            {location?.region}, {location?.label}
             </div>
             <div className="font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
               <IoLocationOutline /> {reservationDate || data.category}
