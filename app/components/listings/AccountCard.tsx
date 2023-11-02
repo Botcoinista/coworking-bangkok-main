@@ -68,33 +68,21 @@ const AccountCard = ({
   return (
 <div
   onClick={() => router.push(`/listings/${data.id}`)}
-  className="flex bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+  className="flex sm:flex-row md:flex-row lg:flex-row bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow"
 >
-  <div
-    className="
-      aspect-square
-      relative
-      overflow-hidden
-      rounded
-      mr-4
-    "
+<div
+    className="relative rounded-lg overflow-hidden mr-6"
     style={{
-      height: "331px",
-      width: "468px",
+      minWidth: '300px',
+      width: '300px', // You can adjust this value
+      height: '250px',
     }}
   >
     <Image
-      fill
-      alt="Listing"
       src={data.imageSrc}
-      className="
-        object-cover
-        h-full
-        w-full
-        group-hover:scale-105
-        transition
-        
-      "
+      alt="Listing"
+      layout="fill"
+      objectFit="cover"
     />
   </div>
   

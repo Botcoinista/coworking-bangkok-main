@@ -2,6 +2,8 @@ import getCurrentUser from "./actions/getCurrentUser";
 import getListings, { IListingsParams } from "./actions/getListings";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
+import Hero from "./components/Hero";
+import HomeBackground from "./components/HomeBackground";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
@@ -14,12 +16,16 @@ const Home = async ({ searchParams }: HomeProps) => {
   if (listings.length === 0) {
     return (
       <EmptyState showReset />
-    )
-  }
+      )
+    }
+    
+    
+    return (
+      <div>
 
-
-  return (
-    <Container>
+        <HomeBackground />
+        <Hero />
+      <Container>
       <div className="
       grid
       grid-cols-1
@@ -38,6 +44,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         })}
       </div>
     </Container>
+      </div>
   )
 }
 

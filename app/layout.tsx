@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
-import HomeBackground from "./components/HomeBackground";
 
 import RegisterModal from "./components/modals/RegisterModal";
 import LoginModal from "./components/modals/LoginModal";
@@ -12,7 +11,6 @@ import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import Categories from "./components/navbar/Categories";
 import Container from "./components/Container";
-import Hero from "./components/Hero";
 import Search from "./components/navbar/Search";
 import SearchModal from "./components/modals/SearchModal";
 
@@ -42,8 +40,6 @@ export default async function RootLayout({
         <LoginModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
-        <HomeBackground />
-        <Hero />
         <div className="pb-20 pt-10">{children}</div>
       </body>
     </html>

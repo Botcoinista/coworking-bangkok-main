@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import ListingCard from "../components/listings/ListingCard";
 import { IoLocationOutline } from "react-icons/io5";
 import AccountCard from "../components/listings/AccountCard";
+import { BiSolidUser } from "react-icons/bi";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
@@ -43,7 +44,7 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
 
   return (
     <Container>
-      
+      <BiSolidUser />
       <Heading title="Account" subtitle="Bookings" />
       <div
         className="
