@@ -20,7 +20,7 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <div>
       <HomeBackground />
-      <Hero />
+    <Hero />
       <Container>
         <div
           className="

@@ -35,3 +35,17 @@ body,
   width: 10px;
   height: 10px;
 }
+
+
+
+
+.homepagetitle-bangkok {
+color: #D9D9D9;
+font-style: normal;
+font-weight: 800;
+mix-blend-mode: difference;
+}
+
+.homepagetitle {
+  mix-blend-mode: overlay;
+}

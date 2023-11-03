@@ -36,7 +36,6 @@ export default async function RootLayout({
     <html>
       <body className={font.className}>
         <Navbar currentUser={currentUser} />
-  
         <ToasterProvider />
         <SearchModal />
         <RentModal />

@@ -12,7 +12,8 @@ module.exports = {
       "poppins": ["Poppins"], // Make sure the key for the fontFamily is lowercase "sans"
       "sans": ["sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
       "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
-      "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
+      
+      'work': ['work-sans', 'system-ui', 'work-sans'], // Make sure the key for the fontFamily is lowercase "sans"
     },
     extend: {
       colors: {
@@ -36,6 +37,13 @@ module.exports = {
         "4xl": "2rem", // or whatever size fits your design
         "5xl": "2.5rem", // example of even larger border-radius
         // ... other custom sizes
+      },
+      fontSize: {
+        'custom-small': '0.875rem', // 14px
+        'custom-base': '1rem', // 16px
+        'hero-title-small': '4.875rem', // 78px
+        'hero-title-large': '11.25rem', // 180px
+        // ... add as many custom sizes as you need
       },
     },
   },
