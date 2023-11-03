@@ -5,13 +5,14 @@ const HomeBackground = () => {
     <div
       className=" h-screen bg-center"
       style={{
-        backgroundImage: `url(/images/HeroHomePage.png)`,
+        backgroundImage: `url(/images/HomePage.png)`,
         backgroundSize: "cover",
         width: "100%",
         height: "70vh",
         backgroundRepeat: "no-repeat",
       }}
-    ></div>
+    >
+    </div>
   );
 };
 

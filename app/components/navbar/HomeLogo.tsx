@@ -25,7 +25,7 @@ const HomeLogo = () => {
             transition
             "
     >
-      <BiSolidHome />
+      <BiSolidHome className="react-icon" />
     </div>
   );
 };

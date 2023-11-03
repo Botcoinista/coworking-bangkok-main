@@ -68,7 +68,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             transition
           "
         >
-          <AiOutlineMenu />
+          <AiOutlineMenu className="react-icon" />
         </div>
         <div
           onClick={toggleOpen}
@@ -98,9 +98,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             <Avatar src={currentUser.image} />
           ) : (
             // Render the default user icon if currentUser is null or undefined (i.e., user is logged out)
-            <BiSolidUser size={20} />
+            <BiSolidUser className="react-icon"/>
           )}
         </div>
+        {currentUser ? (
+
+        
         <div
           onClick={() => signOut()}
           className="
@@ -119,9 +122,10 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             transition
             "
         >
-          <FiLogOut />
-          {/* <div className="hidden md:block"><Avatar /></div> */}
+          <FiLogOut className="react-icon" />
+       
         </div>
+        ): (null)}
       </div>
 
       {isOpen && (

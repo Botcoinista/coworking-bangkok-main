@@ -20,21 +20,12 @@ const Navbar = ({ currentUser }: NavbarProps) => {
     fixed 
     w-full 
     z-10
-    max-w-[2520px]
-    mx-auto
-    xl:px-20
-    md:px-10
-    sm:px-2
-    px-4
+    px-8
+    py-4
     "
     >
       <div
         className="
-        py-4
-        "
-      >
-        <div
-          className="
             flex
             flex-row
             items-center
@@ -42,14 +33,13 @@ const Navbar = ({ currentUser }: NavbarProps) => {
             gap-3
             md:gap-0          
             "
-        >
-          {/* <Logo /> */}
-          <HomeLogo />
-          <Search />
-          <UserMenu currentUser={currentUser} />
-        </div>
+      >
+
+        <HomeLogo />
+        <Search />
+        <UserMenu currentUser={currentUser} />
       </div>
-      <Categories />
+      {/* <Categories /> */}
     </div>
   );
 };
