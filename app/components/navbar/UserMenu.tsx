@@ -74,7 +74,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
           onClick={toggleOpen}
           className={
             currentUser
-              ? ""
+              ? "cursor-pointer"
               : `
             bg-lightestGray
             p-4
