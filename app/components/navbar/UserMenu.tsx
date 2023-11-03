@@ -12,8 +12,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import useRentModal from "@/app/hooks/useRentModal";
 import { SafeUser } from "@/app/types";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
-
-
+import { BiSolidUser } from "react-icons/bi";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -32,7 +31,6 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
     setIsOpen(false);
   });
 
-
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
@@ -44,30 +42,14 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
 
-  
-
+  const handleMenuItemClick = (path: string) => {
+    router.push(path);
+    setIsOpen(false);
+  };
 
   return (
-    
     <div className="relative" ref={wrapperRef}>
       <div className="flex flex-row items-center gap-3">
-        <div
-          onClick={onRent}
-          className="
-            hidden
-            md:block
-            text-sm
-            font-semibold
-            py-3
-            px-4
-            rounded-full
-            hover:bg-neutral-100
-            transition
-            cursor-pointer
-            "
-        >
-          Coworking Bangkok
-        </div>
         <div
           //   onClick={toggleOpen}
           className="
@@ -90,7 +72,10 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         </div>
         <div
           onClick={toggleOpen}
-          className="
+          className={
+            currentUser
+              ? ""
+              : `
             bg-lightestGray
             p-4
             md_py-1
@@ -104,15 +89,20 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             cursor-pointer
             hover:shadow-md
             transition
-            "
+            `
+          }
         >
-          {/* <BiSolidUser /> */}
-          <div className="hidden md:block">
-            <Avatar src={currentUser?.image} />
-          </div>
+          {currentUser ? (
+            // Render the Avatar with the user's image if currentUser exists (i.e., user is logged in)
+            // Removed the "hidden md:block" class to make the avatar always visible
+            <Avatar src={currentUser.image} />
+          ) : (
+            // Render the default user icon if currentUser is null or undefined (i.e., user is logged out)
+            <BiSolidUser size={20} />
+          )}
         </div>
         <div
-          onClick={() => {}}
+          onClick={() => signOut()}
           className="
             bg-lightestGray
             p-4
@@ -152,16 +142,26 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => router.push("/trips")} label="My Trips" />
-                <MenuItem onClick={() => router.push("favorites")} label="My favorites" />
-                <MenuItem onClick={() => router.push("/reservations")} label="My reservations" />
-                <MenuItem onClick={() => router.push("/properties")} label="My Properties" />
+                <MenuItem
+                  onClick={() => handleMenuItemClick("/trips")}
+                  label="My Account"
+                />
+                <MenuItem
+                  onClick={() => handleMenuItemClick("favorites")}
+                  label="My favorites"
+                />
+                <MenuItem
+                  onClick={() => handleMenuItemClick("/reservations")}
+                  label="My reservations"
+                />
+                <MenuItem
+                  onClick={() => handleMenuItemClick("/properties")}
+                  label="My Properties"
+                />
                 <MenuItem
                   onClick={rentModal.onOpen}
-                  label="Co working bangkok home"
+                  label="Add your office space"
                 />
-                <MenuItem onClick={() => signOut()} label="Logout" />
-                {/* <MenuItem onClick={() => {}} label="Account" /> */}
               </>
             ) : (
               <>
@@ -174,7 +174,6 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         </div>
       )}
     </div>
-    
   );
 };
 

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 const HomeBackground = () => {
   return (
@@ -6,10 +6,12 @@ const HomeBackground = () => {
       className=" h-screen bg-center"
       style={{
         backgroundImage: `url(/images/HeroHomePage.png)`,
-        width: '100%',
-        height: '70vh',
-        backgroundRepeat: 'no-repeat',
-      }}></div>
+        backgroundSize: "cover",
+        width: "100%",
+        height: "70vh",
+        backgroundRepeat: "no-repeat",
+      }}
+    ></div>
   );
 };
 

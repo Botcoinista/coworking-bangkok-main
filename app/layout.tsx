@@ -34,13 +34,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <Navbar currentUser={currentUser} />
         <ToasterProvider />
         <SearchModal />
         <RentModal />
         <LoginModal />
         <RegisterModal />
-        <Navbar currentUser={currentUser} />
-        <div className="pb-20 pt-10">{children}</div>
+        <div className="">{children}</div>
       </body>
     </html>
   );

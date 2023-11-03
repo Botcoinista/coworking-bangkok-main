@@ -66,47 +66,55 @@ const AccountCard = ({
   }, [reservation]);
 
   return (
-<div
-  onClick={() => router.push(`/listings/${data.id}`)}
-  className="flex sm:flex-row md:flex-row lg:flex-row bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow"
->
-<div
-    className="relative rounded-lg overflow-hidden mr-6"
-    style={{
-      minWidth: '300px',
-      width: '300px', // You can adjust this value
-      height: '250px',
-    }}
-  >
-    <Image
-      src={data.imageSrc}
-      alt="Listing"
-      layout="fill"
-      objectFit="cover"
-    />
-  </div>
-  
-  <div className="flex flex-col justify-between flex-grow">
-    <div>
-      <div className="flex flex-row justify-between">
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">{data.title}</h2>
-       
-       <div className="flex items-center space-x-2 text-gray-600">
+    <div
+      onClick={() => router.push(`/listings/${data.id}`)}
+      className="flex bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow">
+      <div
+        className="
+      aspect-square
+      relative
+      overflow-hidden
+      rounded
+      mr-4
+    "
+        style={{
+          height: '331px',
+          width: '468px',
+        }}>
+        <Image
+          fill
+          alt="Listing"
+          src={data.imageSrc}
+          className="
+        object-cover
+        h-full
+        w-full
+        group-hover:scale-105
+        transition
+      "
+        />
       </div>
-        <BsFillPencilFill size={40} />
+      <div className="flex flex-col justify-between flex-grow">
+        <div>
+          <div className="flex flex-row justify-between">
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              {data.title}
+            </h2>
+            <div className="flex items-center space-x-2 text-gray-600 mb-20"></div>
+            <BsFillPencilFill size={40} />
+            {/* Add more icons or actions here as needed */}
+          </div>
+          <hr />
+          <p className="text-gray-600 mb-2 max-w-md ">
+            {data.description}
+          </p>
+        </div>
+        <div className="flex justify-between items-center">
+          <p className="text-black-500 font-bold mb-2">{reservationDate}</p>
+          <span className="text-black-500 font-bold">${price} THB</span>
+        </div>
       </div>
-      <hr className="mb-8 mt-8" />
-      <p className="text-gray-600 mb-2">{data.description}</p>
     </div>
-    
-    <div className="flex justify-between items-center">
-      <p className="text-black mb-2 font-bold">{reservationDate}</p>
-      <span className="text-black font-bold">{price} THB</span>
-    </div>
-  </div>
-</div>
-
-  
   );
 };
 

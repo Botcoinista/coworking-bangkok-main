@@ -74,7 +74,7 @@ const ListingClient = ({
       toast.success("Reservation created successfully");
       setDateRange(initialDateRange);
       //redirect to accounts
-      router.push("/trips");
+      router.push("/account");
     })
     .catch(() => {
       toast.error("Reservation failed");
@@ -104,7 +104,7 @@ const ListingClient = ({
   return (
     <Container>
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 ">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}

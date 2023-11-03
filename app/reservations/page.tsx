@@ -17,8 +17,8 @@ const ReservationsPage = async () => {
   }
 
   const reservations = await getReservations({
-    authorId: currentUser.id
-  })
+    authorId: currentUser.id,
+  });
 
   if (reservations.length === 0) {
     return (
@@ -26,15 +26,17 @@ const ReservationsPage = async () => {
         title="No reservations found"
         subtitle="You have not made any reservations"
       />
-    )
+    );
   }
 
   return (
-    <ReservationsClient
+    <div className="pb-20 pt-28">
+      <ReservationsClient
         reservations={reservations}
         currentUser={currentUser}
-    />
-  )
+      />
+    </div>
+  );
 };
 
 export default ReservationsPage;

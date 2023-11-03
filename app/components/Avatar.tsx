@@ -11,8 +11,8 @@ const Avatar = ({ src }: AvatarProps) => {
   return (
     <Image
       className="rounded-full"
-      height="30"
-      width="30"
+      height="50"
+      width="50"
       alt="Avatar"
       src={src || "/images/placeholder.jpg"}
     />

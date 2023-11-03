@@ -19,10 +19,13 @@ const ListingPage = async () => {
   }
 
   return (
-    <FavoritesClient
-        listings={listings}
-        currentUser={currentUser}
-    />
+    <div className="pb-20 pt-28">
+
+      <FavoritesClient
+          listings={listings}
+          currentUser={currentUser}
+      />
+    </div>
   )
 };
 

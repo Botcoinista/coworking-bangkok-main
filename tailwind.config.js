@@ -12,6 +12,7 @@ module.exports = {
       "poppins": ["Poppins"], // Make sure the key for the fontFamily is lowercase "sans"
       "sans": ["sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
       "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
+      "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
     },
     extend: {
       colors: {

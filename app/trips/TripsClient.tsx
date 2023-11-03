@@ -44,16 +44,16 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
 
   return (
     <Container>
-      <BiSolidUser />
-      <Heading title="Account" subtitle="Bookings" />
+      {/* <BiSolidUser /> */}
       <div
         className="
           flex
           flex-col
           gap-8
-          mt-8
+        
           "
           >
+      <Heading title="Account" subtitle="Bookings" />
         {reservations.map((reservation) => (
           <AccountCard data={reservation.listing}
           reservation={reservation}

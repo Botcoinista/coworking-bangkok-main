@@ -14,6 +14,7 @@ const Container = ({ children }: ContainerProps) => {
       md:px-10
       sm:px-2
       px-4
+      
    ">
       {children}
     </div>
