@@ -9,7 +9,7 @@ import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("../Map"), {
-  ssr:false
+  ssr: false,
 });
 
 interface ListingInfoProps {
@@ -22,7 +22,6 @@ interface ListingInfoProps {
     | {
         icon: IconType;
         label: string;
-        description: string;
       }
     | undefined;
   locationValue: string;
@@ -42,8 +41,8 @@ const ListingInfo = ({
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <div className="col-span-4 flex flex-col gap-8 mt-20">
-      <div className="flex flex-col gap-2">
+    <div className="col-span-4 flex flex-col gap-8 ">
+      {/* <div className="flex flex-col gap-2">
         <div
           className="
         text-xl
@@ -63,7 +62,7 @@ const ListingInfo = ({
         items-center
         gap-4
         font-light
-        text-neutral-500
+        text-gray
         "
         >
             <div>
@@ -77,21 +76,23 @@ const ListingInfo = ({
             </div>
 
         </div>
+      </div> */}
+      {/* <hr /> */}
+      <div className=" border">
+        {category && (
+          <ListingCategory
+            icon={category.icon}
+            label={category.label}
+            iconClassName="text-blue-500 hover:text-blue-700"
+          />
+        )}
+        {/* <hr /> */}
       </div>
-      <hr />
-      {category && (
-        <ListingCategory
-          icon={category.icon}
-          label={category.label}
-          description={category.description}
-        />
-      )}
-      <hr />
-      <div className="text-lg font-light text-neutral-500">
+      <div className="text-lg font-light text-neutral-500 mb-20">
         {description}
       </div>
-      <hr />
-        <Map center={coordinates} />
+      {/* <hr /> */}
+      <Map center={coordinates} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      "poppins": ["Poppins"], // Make sure the key for the fontFamily is lowercase "sans"
+      "poppins": ['Poppins', 'sans-serif'], // Make sure the key for the fontFamily is lowercase "sans"
       "sans": ["sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
       "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
       
@@ -22,6 +22,7 @@ module.exports = {
         darkgray: "#3F3F3F",
         gray: "#616161",
         lightgray: "#848484",
+        semlightgray: "#404040",
         lightestGray: "#F3F3F3",
         linegray: "#D2D2D2",
         lightwhite: "#F3F3F3",

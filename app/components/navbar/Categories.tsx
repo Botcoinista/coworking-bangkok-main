@@ -14,29 +14,29 @@ import Container from '../Container';
 
 export const categories = [
     {
-        label: 'Lock',
+        label: 'SAFTEYBOX',
         icon: GrLock,
-        description: 'This property has safteyboxes!',
+        // description: 'This property has safteyboxes!',
       },
       {
-        label: 'Activities',
+        label: 'ACTIVITIES',
         icon: FaMedal,
-        description: 'This property has activities!',
+        // description: 'This property has activities!',
       },
       {
-        label: 'Kitchen',
+        label: 'FOOD AVAILABLE',
         icon: TbToolsKitchen2,
-        description: 'This property has a kitchen!'
+        // description: 'This property has a kitchen!'
       },
       {
-        label: 'Coffee',
+        label: 'FREE COOFEE',
         icon: CgCoffee,
-        description: 'This property has a coffee machine!'
+        // description: 'This property has a coffee machine!'
       },
       {
-        label: 'Gym',
+        label: 'GYM',
         icon: CgGym,
-        description: 'This property has a gym!'
+        // description: 'This property has a gym!'
       },
      
     ]    
