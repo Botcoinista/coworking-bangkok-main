@@ -49,7 +49,7 @@ const ListingHead = ({
       </div>
       <Heading
         title={title}
-        icon={<IoLocationOutline size={40} className="text-semilightgray" />}
+        icon={<IoLocationOutline size={16} className="text-semilightgray" />}
         subtitle={`${location?.region}, ${location?.label}`}
       />
     </>

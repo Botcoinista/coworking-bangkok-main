@@ -15,6 +15,7 @@ import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
+import ListingClientRight from "./ListingClientRight";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -138,7 +139,9 @@ const ListingClient = ({
             md:col-span-3
             "
             >
-              <ListingReservation 
+              <ListingClientRight />
+              
+              {/* <ListingReservation 
                 price={listing.price}
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}
@@ -146,7 +149,7 @@ const ListingClient = ({
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
                 disabledDates={disabledDates}
-              />
+              /> */}
             </div>
           </div>
         </div>

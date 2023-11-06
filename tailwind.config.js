@@ -42,6 +42,8 @@ module.exports = {
       fontSize: {
         'custom-small': '0.875rem', // 14px
         'custom-base': '1rem', // 16px
+        'twentyfour': '24px',
+        'thirtysix': '36px',
         'hero-title-small': '4.875rem', // 78px
         'hero-title-large': '11.25rem', // 180px
         // ... add as many custom sizes as you need
