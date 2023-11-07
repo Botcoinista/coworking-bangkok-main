@@ -78,7 +78,11 @@ const ListingInfo = ({
         </div>
       </div> */}
       {/* <hr /> */}
-      <div className=" border">
+      {/* <div className="text-darkgray font-poppins text-hero-title-small font-bold ">
+        The Hive Thonglor
+      </div> */}
+
+      <div className=" border-[1px] w-[fit-content] rounded-tr-lg rounded-bl-lg p-1">
         {category && (
           <ListingCategory
             icon={category.icon}
@@ -88,7 +92,7 @@ const ListingInfo = ({
         )}
         {/* <hr /> */}
       </div>
-      <div className="text-lg font-light text-neutral-500 mb-20">
+      <div className="text-lg font-light text-gray mb-20">
         {description}
       </div>
       {/* <hr /> */}

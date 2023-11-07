@@ -104,7 +104,7 @@ const ListingClient = ({
 
   return (
     <Container>
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-4XL mx-auto">
         <div className="flex flex-col gap-6 ">
           <ListingHead
             title={listing.title}

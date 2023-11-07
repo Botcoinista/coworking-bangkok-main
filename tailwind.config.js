@@ -22,7 +22,7 @@ module.exports = {
         darkgray: "#3F3F3F",
         gray: "#616161",
         lightgray: "#848484",
-        semlightgray: "#404040",
+        semilightgray: "#404040",
         lightestGray: "#F3F3F3",
         linegray: "#D2D2D2",
         lightwhite: "#F3F3F3",
@@ -34,6 +34,10 @@ module.exports = {
         coffecircle: "#F5EEE8",
         // You can add more custom colors here if needed
       },
+      maxWidth: {
+        '1/2': '50%',
+        '6/10': '60%',
+      },
       borderRadius: {
         "4xl": "2rem", // or whatever size fits your design
         "5xl": "2.5rem", // example of even larger border-radius
@@ -44,7 +48,7 @@ module.exports = {
         'custom-base': '1rem', // 16px
         'twentyfour': '24px',
         'thirtysix': '36px',
-        'hero-title-small': '4.875rem', // 78px
+        'hero-title-small': '78px', // 78px
         'hero-title-large': '11.25rem', // 180px
         // ... add as many custom sizes as you need
       },

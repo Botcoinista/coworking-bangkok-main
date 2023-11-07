@@ -16,9 +16,9 @@ const ListingCategory = ({
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-row items-center gap-4">
-      <Icon size={16} className={`text-neutral-600 ${iconClassName || ''}`} />
+      <Icon size={16} className={`text-semilightgray ${iconClassName || ''}`} />
         <div className="flex flex-col">
-          <div className="text-semlightgray text-custom-base font-semibold">{label}</div>
+          <div className="text-semilightgray text-custom-base font-semibold">{label}</div>
         </div>
       </div>
     </div>
