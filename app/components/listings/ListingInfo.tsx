@@ -78,7 +78,7 @@ const ListingInfo = ({
         </div>
       </div> */}
       {/* <hr /> */}
-      {/* <div className="text-darkgray font-poppins text-hero-title-small font-bold ">
+      {/* <div className="text-darkgray font-poppins text-seventyeight font-bold ">
         The Hive Thonglor
       </div> */}
 
@@ -92,9 +92,7 @@ const ListingInfo = ({
         )}
         {/* <hr /> */}
       </div>
-      <div className="text-lg font-light text-gray mb-20">
-        {description}
-      </div>
+      <div className="text-lg font-light text-gray mb-20">{description}</div>
       {/* <hr /> */}
       <Map center={coordinates} />
     </div>

@@ -9,11 +9,11 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      "poppins": ['Poppins', 'sans-serif'], // Make sure the key for the fontFamily is lowercase "sans"
-      "sans": ["sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
-      "rajhadi": ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
-      
-      'work': ['work-sans', 'system-ui', 'work-sans'], // Make sure the key for the fontFamily is lowercase "sans"
+      poppins: ["Poppins", "sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
+      sans: ["sans-serif"], // Make sure the key for the fontFamily is lowercase "sans"
+      rajhadi: ["rajhadi"], // Make sure the key for the fontFamily is lowercase "sans"
+
+      work: ["work-sans", "system-ui", "work-sans"], // Make sure the key for the fontFamily is lowercase "sans"
     },
     extend: {
       colors: {
@@ -35,8 +35,8 @@ module.exports = {
         // You can add more custom colors here if needed
       },
       maxWidth: {
-        '1/2': '50%',
-        '6/10': '60%',
+        "1/2": "50%",
+        "6/10": "60%",
       },
       borderRadius: {
         "4xl": "2rem", // or whatever size fits your design
@@ -44,12 +44,14 @@ module.exports = {
         // ... other custom sizes
       },
       fontSize: {
-        'custom-small': '0.875rem', // 14px
-        'custom-base': '1rem', // 16px
-        'twentyfour': '24px',
-        'thirtysix': '36px',
-        'hero-title-small': '78px', // 78px
-        'hero-title-large': '11.25rem', // 180px
+        "custom-small": "0.875rem", // 14px
+        "custom-base": "1rem", // 16px
+        "twentyfour": "24px",
+        "thirtysix": "36px",
+        "fourtyeight": "48px",
+        "sixty": "60px",
+        "seventyeight": "78px", // 78px
+        "hundredeighty": "180px", // 180px
         // ... add as many custom sizes as you need
       },
     },

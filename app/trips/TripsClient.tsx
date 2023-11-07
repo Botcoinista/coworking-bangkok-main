@@ -1,31 +1,24 @@
 "use client";
-
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import { SafeReservation, SafeUser } from "../types";
-import toast from "react-hot-toast";
-import ListingCard from "../components/listings/ListingCard";
-import { IoLocationOutline } from "react-icons/io5";
 import AccountCard from "../components/listings/AccountCard";
+import ListingCard from "../components/listings/ListingCard";
 import { BiSolidUser } from "react-icons/bi";
-
 interface TripsClientProps {
   reservations: SafeReservation[];
-  currentUser?: SafeUser | null;
+  currentUser: SafeUser | null;
 }
-
 const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
-
   const onCancel = useCallback(
     (id: string) => {
       setDeletingId(id);
-
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
@@ -41,24 +34,26 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
     },
     [router]
   );
-
   return (
     <Container>
-      {/* <BiSolidUser /> */}
+      <div className="flex text-darkgray gap-4 sm:text-fourtyeight md:text-sixty lg:text-seventyeight">
+        <div className="">
+          <BiSolidUser />
+        </div>
+        <Heading title="Account" />
+      </div>
+      <div className="bg-darkgray">
+        <div className="ml-5 text-white p-2 font-bold text-thirtysix mb-6">Bookings</div>
+      </div>
       <div
         className="
-          flex
-          flex-col
-          gap-8
-        
-          "
-          >
-      <Heading title="Account" subtitle="Bookings" />
+                flex
+                flex-col
+                gap-8
+        "
+      >
         {reservations.map((reservation) => (
-          <AccountCard data={reservation.listing}
-          reservation={reservation}
-          key={reservation.id}
-          />
+          <AccountCard data={reservation.listing} reservation={reservation} />
           // <ListingCard
           //     key={reservation.id}
           //     data={reservation.listing}
@@ -74,5 +69,4 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
     </Container>
   );
 };
-
 export default TripsClient;
