@@ -16,6 +16,7 @@ import ListingReservation from "@/app/components/listings/ListingReservation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
 import ListingClientRight from "./ListingClientRight";
+import Heading from "@/app/components/Heading";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -113,6 +114,7 @@ const ListingClient = ({
             id={listing.id}
             currentUser={currentUser}
           />
+
           <div
             className="
             grid
@@ -123,6 +125,7 @@ const ListingClient = ({
           "
           >
             <ListingInfo
+              title={listing.title}
               user={listing.user}
               category={category}
               description={listing.description}

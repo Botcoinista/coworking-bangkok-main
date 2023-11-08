@@ -7,12 +7,15 @@ import { IconType } from "react-icons";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
+import Heading from "../Heading";
+import { IoLocationOutline } from "react-icons/io5";
 
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
 });
 
 interface ListingInfoProps {
+  title: string;
   user: SafeUser;
   description: string;
   guestCount: number;
@@ -28,6 +31,7 @@ interface ListingInfoProps {
 }
 
 const ListingInfo = ({
+  title,
   user,
   description,
   guestCount,
@@ -37,11 +41,17 @@ const ListingInfo = ({
   locationValue,
 }: ListingInfoProps) => {
   const { getByValue } = useCountries();
-
+  const location = getByValue(locationValue);
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
     <div className="col-span-4 flex flex-col gap-8 ">
+
+<Heading
+        title={title}
+        icon={<IoLocationOutline size={16} className="text-semilightgray" />}
+        subtitle={`${location?.region}, ${location?.label}`}
+      />
       {/* <div className="flex flex-col gap-2">
         <div
           className="

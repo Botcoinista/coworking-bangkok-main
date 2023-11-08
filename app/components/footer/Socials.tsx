@@ -8,11 +8,11 @@ const Socials = () => {
           Our customers generally like being social, therefore some of our
           places organize:
         </p>
-        <p className="text-gray-300 mt-2">- Gatherings </p>
-        <p className="text-gray-300 mt-2">- Afterworks </p>
-        <p className="text-gray-300 mt-2">- Movienights </p>
-        <p className="text-gray-300 mt-2">- Pool </p>
-        <p className="text-gray-300 mt-2">- Pingpong </p>
+        <p className="text-gray-300 mt-2 hover:text-yellow ">- Gatherings </p>
+        <p className="text-gray-300 mt-2 hover:text-yellow ">- Afterworks </p>
+        <p className="text-gray-300 mt-2 hover:text-yellow">- Movienights </p>
+        <p className="text-gray-300 mt-2 hover:text-yellow ">- Pool </p>
+        <p className="text-gray-300 mt-2 hover:text-yellow ">- Pingpong </p>
       </div>
     </div>
   );

@@ -47,11 +47,11 @@ const ListingHead = ({
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
       </div>
-      <Heading
+      {/* <Heading
         title={title}
         icon={<IoLocationOutline size={16} className="text-semilightgray" />}
         subtitle={`${location?.region}, ${location?.label}`}
-      />
+      /> */}
     </>
   );
 };
