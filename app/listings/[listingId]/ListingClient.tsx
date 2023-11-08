@@ -17,6 +17,7 @@ import ListingReservation from "@/app/components/listings/ListingReservation";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import ListingClientRight from "./ListingClientRight";
 import Heading from "@/app/components/Heading";
+import { FaRegEnvelope } from "react-icons/fa";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -106,7 +107,7 @@ const ListingClient = ({
   return (
     <Container>
       <div className="max-w-screen-4XL mx-auto">
-        <div className="flex flex-col gap-6 ">
+        <div className="flex flex-col gap-12 ">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
@@ -120,12 +121,11 @@ const ListingClient = ({
             grid
             grid-cols-1
             md:grid-cols-7
-            md:gap-10
-            mt-6
+            md:gap-10         
           "
           >
             <ListingInfo
-              title={listing.title}
+            title={listing.title}
               user={listing.user}
               category={category}
               description={listing.description}
@@ -134,6 +134,8 @@ const ListingClient = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+
+            
             <div
             className="
             order-first
