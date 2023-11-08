@@ -13,6 +13,7 @@ import Categories from "./components/navbar/Categories";
 import Container from "./components/Container";
 import Search from "./components/navbar/Search";
 import SearchModal from "./components/modals/SearchModal";
+import TuckTuckBanner from "./components/TuckTuckBanner";
 
 
 export const metadata: Metadata = {

@@ -4,6 +4,7 @@ import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import Hero from "./components/Hero";
 import HomeBackground from "./components/HomeBackground";
+import TuckTuckBanner from "./components/TuckTuckBanner";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
@@ -41,6 +42,7 @@ const Home = async ({ searchParams }: HomeProps) => {
             );
           })}
         </div>
+      <TuckTuckBanner />
       </Container>
     </div>
   );

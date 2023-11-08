@@ -50,6 +50,7 @@ module.exports = {
         "thirtysix": "36px",
         "fourtyeight": "48px",
         "sixty": "60px",
+        "sixtyfour": "64px",
         "seventyeight": "78px", // 78px
         "hundredeighty": "180px", // 180px
         // ... add as many custom sizes as you need

@@ -11,6 +11,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import Button from "../Button";
 import RatingStar from "../RatingStar";
 import { IconType } from "react-icons";
+import TuckTuckBanner from "../TuckTuckBanner";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -135,16 +136,15 @@ const ListingCard = ({
             </div>
           </div>
         </div>
-        <div></div>
 
         {onAction && actionLabel && (
           <Button
-            disabled={disabled}
-            small
-            label={actionLabel}
-            onClick={handleCancel()}
+          disabled={disabled}
+          small
+          label={actionLabel}
+          onClick={handleCancel()}
           />
-        )}
+          )}
       </div>
     </div>
   );
