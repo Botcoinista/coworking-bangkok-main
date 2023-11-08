@@ -16,8 +16,16 @@ import ListingReservation from "@/app/components/listings/ListingReservation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
 import ListingClientRight from "../listingclientright/ListingClientRight";
-import Heading from "@/app/components/Heading";
-import { FaRegEnvelope } from "react-icons/fa";
+
+
+import dynamic from "next/dynamic";
+import useCountries from "@/app/hooks/useCountries";
+
+const Map = dynamic(() => import("../../../components/Map"), {
+  ssr: false,
+});
+
+
 
 const initialDateRange = {
   startDate: new Date(),
@@ -31,15 +39,22 @@ interface ListingClientProps {
     user: SafeUser;
   };
   currentUser?: SafeUser | null;
+  locationValue: string;
 }
 
 const ListingClient = ({
   listing,
   currentUser,
   reservations = [],
+  locationValue,
 }: ListingClientProps) => {
   const loginModal = useLoginModal();
   const router = useRouter();
+
+  const { getByValue } = useCountries();
+  const coordinates = getByValue(locationValue)?.latlng;
+  const location = getByValue(locationValue);
+
 
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
@@ -107,7 +122,7 @@ const ListingClient = ({
   return (
     <Container>
       <div className="max-w-screen-4XL mx-auto">
-        <div className="flex flex-col gap-12 ">
+        <div className="flex flex-col gap-12">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
@@ -125,31 +140,32 @@ const ListingClient = ({
           "
           >
            
-            <div className="order-first md:col-span-4">
+            <div className="md:col-span-4">
 
             <ListingInfo
               title={listing.title}
               user={listing.user}
               category={category}
               description={listing.description}
-              roomCount={listing.roomCount}
-              guestCount={listing.guestCount}
-              bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
-            
+             <div className="md:order-first order-last md:col-span-4">
+              
+            <Map center={coordinates} />
+              </div>
             </div>
-            
+
+           
 
             <div
               className="
-            mb-10
-            md:order-last
-            md:col-span-3
-            
-            "
+              mb-10
+              md:order-last
+              md:col-span-3
+              
+              "
             >
-              <div className="order-last md:order-none md:col-span-3">
+              <div className=" md:col-span-3">
 
               <ListingClientRight />
               </div>

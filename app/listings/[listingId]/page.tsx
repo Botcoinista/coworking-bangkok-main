@@ -23,6 +23,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           listing={listing}
           reservations={reservations}
           currentUser={currentUser}
+          locationValue={listing.locationValue}
         />
       </div>
     </Container>
