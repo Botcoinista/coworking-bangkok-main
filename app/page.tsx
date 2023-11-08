@@ -23,28 +23,28 @@ const Home = async ({ searchParams }: HomeProps) => {
     <div>
       <HomeBackground />
     <Hero />
-        <CoffeeBanner />
       <Container>
         <div
           className="
-      grid
-      grid-cols-1
-      sm:grid-cols-2
-      md:grid-cols-3
-      gap-8
-      "
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
+          gap-8
+          "
         >
           {listings.map((listing) => {
             return (
               <ListingCard
-                currentUser={currentUser}
-                key={listing.id}
-                data={listing}
+              currentUser={currentUser}
+              key={listing.id}
+              data={listing}
               />
-            );
-          })}
+              );
+            })}
         </div>
       <TuckTuckBanner />
+            <CoffeeBanner />
       </Container>
     </div>
   );
