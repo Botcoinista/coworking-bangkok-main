@@ -11,11 +11,11 @@ import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
-import ListingInfo from "@/app/components/listings/ListingInfo";
+import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
-import ListingClientRight from "./ListingClientRight";
+import ListingClientRight from "../listingclientright/ListingClientRight";
 import Heading from "@/app/components/Heading";
 import { FaRegEnvelope } from "react-icons/fa";
 
@@ -67,21 +67,22 @@ const ListingClient = ({
 
     setIsLoading(true);
 
-    axios.post("/api/reservations", {
-      totalPrice,
-      startDate: dateRange.startDate,
-      endDate: dateRange.endDate,
-      listingId: listing.id,
-    })
-    .then(() => {
-      toast.success("Reservation created successfully");
-      setDateRange(initialDateRange);
-      //redirect to accounts
-      router.push("/trips");
-    })
-    .catch(() => {
-      toast.error("Reservation failed");
-    })
+    axios
+      .post("/api/reservations", {
+        totalPrice,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        listingId: listing.id,
+      })
+      .then(() => {
+        toast.success("Reservation created successfully");
+        setDateRange(initialDateRange);
+        //redirect to accounts
+        router.push("/trips");
+      })
+      .catch(() => {
+        toast.error("Reservation failed");
+      });
   }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
 
   useEffect(() => {
@@ -96,7 +97,6 @@ const ListingClient = ({
       } else {
         setTotalPrice(listing.price);
       }
-      
     }
   }, [dateRange, listing.price]);
 
@@ -124,8 +124,11 @@ const ListingClient = ({
             md:gap-10         
           "
           >
+           
+            <div className="order-first md:col-span-4">
+
             <ListingInfo
-            title={listing.title}
+              title={listing.title}
               user={listing.user}
               category={category}
               description={listing.description}
@@ -134,19 +137,24 @@ const ListingClient = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
-
             
+            </div>
+            
+
             <div
-            className="
-            order-first
+              className="
             mb-10
             md:order-last
             md:col-span-3
+            
             "
             >
+              <div className="order-last md:order-none md:col-span-3">
+
               <ListingClientRight />
-              
-              <ListingReservation 
+              </div>
+
+              <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
                 onChangeDate={(value) => setDateRange(value)}

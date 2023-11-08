@@ -4,14 +4,14 @@ import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import { IconType } from "react-icons";
 
-import Avatar from "../Avatar";
-import ListingCategory from "./ListingCategory";
+import Avatar from "../../../components/Avatar";
+import ListingCategory from "../../../components/listings/ListingCategory";
 import dynamic from "next/dynamic";
-import Heading from "../Heading";
+import Heading from "../../../components/Heading";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaRegEnvelope } from "react-icons/fa";
 
-const Map = dynamic(() => import("../Map"), {
+const Map = dynamic(() => import("../../../components/Map"), {
   ssr: false,
 });
 
@@ -46,7 +46,7 @@ const ListingInfo = ({
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <div className="col-span-4 flex flex-col gap-2 ">
+    <div className="col-span-4 flex flex-col gap-2">
       <Heading
         title={title}
         icon={<IoLocationOutline size={16} className="text-semilightgray" />}
@@ -58,7 +58,6 @@ const ListingInfo = ({
         <span className="flex text-custombase text-lightgray">
           bookings@coworkingbangkok.com
         </span>
-
       </div>
       {/* <div className="flex flex-col gap-2">
         <div
@@ -110,7 +109,9 @@ const ListingInfo = ({
         )}
         {/* <hr /> */}
       </div>
-      <div className="text-lg font-light text-gray mb-20 mt-8">{description}</div>
+      <div className="text-lg font-light text-gray mb-20 mt-8">
+        {description}
+      </div>
       {/* <hr /> */}
       <Map center={coordinates} />
     </div>
