@@ -14,8 +14,11 @@ const ListingClientRight = () => {
   return (
     <div>
       <Pricing />
-      <Button label="Book Now" onClick={onOpen} />
-      {isOpen && <CheckoutModal />}
+      <Button label="hej" onClick={onOpen} />
+      {isOpen && <CheckoutModal 
+     
+     
+     />}
       {isOpen && <ConfirmationModal />}
       <Ratings />
     </div>
