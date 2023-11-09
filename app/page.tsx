@@ -1,5 +1,6 @@
 import getCurrentUser from "./actions/getCurrentUser";
 import getListings, { IListingsParams } from "./actions/getListings";
+import ArraySlicer from "./components/ArraySlicer";
 import CoffeeBanner from "./components/CoffeeCup";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
@@ -25,30 +26,69 @@ const Home = async ({ searchParams }: HomeProps) => {
       <HomeBackground />
       <Hero />
       <Container>
-        <div
-          className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          gap-8
-          "
-        >
-          {listings.map((listing) => {
-            return (
-              <ListingCard
-                currentUser={currentUser}
-                key={listing.id}
-                data={listing}
-              />
-            );
-          })}
+        <div className="py-6 md:pt-20 md:pb-4 ">
+          <ArraySlicer
+            listings={listings.slice(0, 3)}
+            currentUser={currentUser}
+          />
         </div>
       </Container>
-        <TuckTuckBanner />
-        <CoffeeBanner />
+      <TuckTuckBanner />
+      <Container>
+        <div className="py-6 md:pt-20 md:pb-4">
+          <ArraySlicer
+            listings={listings.slice(3, 6)}
+            currentUser={currentUser}
+          />
+        </div>
+      </Container>
+      <CoffeeBanner />
+      <Container>
+        <div className="py-6 md:pt-20 md:pb-4">
+          <ArraySlicer
+            listings={listings.slice(6, 9)}
+            currentUser={currentUser}
+          />
+        </div>
+      </Container>
+      <Container>
+        <div className="py-6 md:pt-20 md:pb-4">
+          <ArraySlicer
+            listings={listings.slice(9, 12)}
+            currentUser={currentUser}
+          />
+        </div>
+      </Container>
     </>
   );
 };
 
 export default Home;
+
+{
+  /* <HomeBackground />
+<Hero />
+<Container>
+  <div
+    className="
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    gap-8
+    "
+  >
+    {listings.map((listing) => {
+      return (
+        <ListingCard
+          currentUser={currentUser}
+          key={listing.id}
+          data={listing}
+        />
+      );
+    })}
+  </div>
+</Container>
+<TuckTuckBanner />
+<CoffeeBanner /> */
+}
