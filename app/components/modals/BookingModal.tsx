@@ -116,7 +116,7 @@ const BookingModal = ({
                   rounder-t
                   justify-center
                   relative
-                  border-b-[1px]
+                
                   ">
                 <button
                   onClick={handleClose}
@@ -126,9 +126,10 @@ const BookingModal = ({
                     hover:opacity-70
                     transition
                     absolute
-                    right-9
+                    right-5
+                    mt-6
                     ">
-                  <IoMdClose size={18} />
+                  <IoMdClose size={28} />
                 </button>
               </div>
               {/*body*/}

@@ -10,6 +10,8 @@ import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
 import Button from "../Button";
 import BookingModal from "./BookingModal";
+import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
+import { AiFillCreditCard } from "react-icons/ai";
 
 interface CheckoutModalProps {
   // Other props...
@@ -65,14 +67,11 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={onClose}
-
       body={
-        <div className="flex">
-          <div className="w-1/2 border-[1px]"
-          >
-            <div className="text-seventyeight flex justify-center">
-
-            <h1>Choose dates</h1>
+        <div className="flex px-10">
+          <div className="w-1/2 border-[1px]flex">
+            <div className="text-seventyeight flex justify-center font-bold ">
+              <h1>Choose dates</h1>
             </div>
             <ListingReservation
               price={100} // Replace with actual price per night
@@ -83,13 +82,35 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
               disabled={isLoading}
               disabledDates={disabledDates}
             />
+            <div className=" text-3xl font-bold flex justify-center gap-2 mt-8">
+              <p>Choose Payment Method</p>
+              <div className="">
+                <AiFillCreditCard size={30} />
+              </div>
+            </div>
+
+            <div className="flex gap-24 justify-center mt-2">
+
+              <div className="widerIcon">
+              <FaCcPaypal size={80} style={{ color: '#FFC703'}} />
+              </div>
+
+              <div className="flex widerIcon">
+                <div>
+                  <FaCcVisa size={80} style={{ color: '#375BDB' }}/>
+                </div>
+                <div>
+                  <FaCcMastercard size={80} style={{ color: '#D34121'}} />
+                </div>
+              </div>
+
+            </div>
+
             <div
               // onClick={() => router.push('/trips')}
-              className="text-center text-seventyeight font-bold p-20 cursor-pointer"
-              ref={modalRef}
-            >
-             
-            </div>
+              // className="text-center text-seventyeight font-bold p-20 cursor-pointer"
+              // ref={modalRef}
+            ></div>
           </div>
           <div className="w-1/2 border-[1px]">
             <Button disabled={disabled} label="korv" onClick={onSubmit} />

@@ -55,3 +55,7 @@ mix-blend-mode: difference;
 .homepagetitle {
   mix-blend-mode: overlay;
 }
+
+.widerIcon {
+  transform: scaleX(1.5); /* This stretches the icon 1.5 times its original width */
+}
