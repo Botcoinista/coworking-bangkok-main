@@ -14,6 +14,7 @@ import Container from "./components/Container";
 import Search from "./components/navbar/Search";
 import SearchModal from "./components/modals/SearchModal";
 import TuckTuckBanner from "./components/TuckTuckBanner";
+import Footer from "./components/footer/Footer";
 
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default async function RootLayout({
         <LoginModal />
         <RegisterModal />
         <div className="">{children}</div>
+        <Footer />
       </body>
     </html>
   );

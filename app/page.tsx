@@ -15,14 +15,15 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
+
   if (listings.length === 0) {
     return <EmptyState showReset />;
   }
 
   return (
-    <div>
+    <>
       <HomeBackground />
-    <Hero />
+      <Hero />
       <Container>
         <div
           className="
@@ -36,17 +37,17 @@ const Home = async ({ searchParams }: HomeProps) => {
           {listings.map((listing) => {
             return (
               <ListingCard
-              currentUser={currentUser}
-              key={listing.id}
-              data={listing}
+                currentUser={currentUser}
+                key={listing.id}
+                data={listing}
               />
-              );
-            })}
+            );
+          })}
         </div>
-      <TuckTuckBanner />
-            <CoffeeBanner />
       </Container>
-    </div>
+        <TuckTuckBanner />
+        <CoffeeBanner />
+    </>
   );
 };
 

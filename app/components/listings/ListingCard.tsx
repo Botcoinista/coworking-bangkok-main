@@ -109,7 +109,7 @@ const ListingCard = ({
             group-hover:scale-110   
             "
           />
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-2 left-2 ">
             <RatingStar />
           </div>
           <div className="absolute top-2 right-2">
