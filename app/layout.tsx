@@ -9,13 +9,9 @@ import RentModal from "./components/modals/RentModal";
 
 import ToasterProvider from "./providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
-import Categories from "./components/navbar/Categories";
-import Container from "./components/Container";
-import Search from "./components/navbar/Search";
-import SearchModal from "./components/modals/SearchModal";
-import TuckTuckBanner from "./components/TuckTuckBanner";
-import Footer from "./components/footer/Footer";
 
+import SearchModal from "./components/modals/SearchModal";
+import Footer from "./components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Coworking bangkok",

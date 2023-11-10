@@ -71,9 +71,9 @@ const BookingModal = ({
           className="
             relative
             w-full
-            md:w-4/5
-            lg:w-4/5
-            xl:w-4/5
+            md:w-3/5
+            lg:w-3/5
+            xl:w-3/5
             my-6
             mx-auto
             h-full

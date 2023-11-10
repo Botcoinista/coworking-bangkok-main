@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import Modal from "./Modal";
-import useOutsideClick from "@/app/hooks/useOutsideClick";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+
 import { useRouter } from "next/navigation";
 import useCheckoutModal from "@/app/hooks/useCheckoutModal";
 import ListingReservation from "../listings/ListingReservation";
@@ -8,25 +7,35 @@ import Calender from "../inputs/Calender";
 import { differenceInCalendarDays } from "date-fns";
 import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
-import Button from "../Button";
+
 import BookingModal from "./BookingModal";
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
 import { AiFillCreditCard } from "react-icons/ai";
+import axios from "axios";
+import toast from "react-hot-toast";
+import useLoginModal from "@/app/hooks/useLoginModal";
+
+
+const initialDateRange = {
+  startDate: new Date(),
+  endDate: new Date(),
+  key: "selection",
+};
 
 interface CheckoutModalProps {
-  // Other props...
-  listing: SafeListing & {
-    user: SafeUser;
-    // Add any required properties that the listing object should have
-  };
-  onSubmit: () => void;
-  disabled: boolean;
+  listing: SafeListing;
+  currentUser?: SafeUser | null;
 }
 
-const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
+const CheckoutModal = ({
+  listing,
+  currentUser,
+}: CheckoutModalProps) => {
+
   const { isOpen, onClose } = useCheckoutModal();
-  const modalRef = useRef(null);
+  // const modalRef = useRef(null);
   const router = useRouter();
+  const loginModal = useLoginModal();
 
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
@@ -38,16 +47,46 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
   const [disabledDates, setDisabledDates] = useState([]); // You would get this from props or context
   const [isLoading, setIsLoading] = useState(false);
 
+  const onCreateReservation = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    setIsLoading(true);
+
+    axios
+      .post("/api/reservations", {
+        totalPrice,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        listingId: listing.id,
+      })
+      .then(() => {
+        toast.success("Reservation created successfully");
+        setDateRange(initialDateRange);
+        //redirect to accounts
+        router.push("/trips");
+      })
+      .catch(() => {
+        toast.error("Reservation failed");
+      });
+  }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
+
   // Replicate date change effect
   useEffect(() => {
-    if (dateRange.endDate && dateRange.startDate) {
+    if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInCalendarDays(
         dateRange.endDate,
         dateRange.startDate
       );
-      setTotalPrice(dayCount * 100);
+
+      if (dayCount && listing.price) {
+        setTotalPrice(dayCount * listing.price);
+      } else {
+        setTotalPrice(listing.price);
+      }
     }
-  }, [dateRange]);
+  }, [dateRange, listing.price]);
 
   // Handle reservation submission
   const handleReservationSubmit = () => {
@@ -69,8 +108,8 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
       onSubmit={onClose}
       body={
         <div className="flex px-10">
-          <div className="w-1/2 border-[1px]flex">
-            <div className="text-seventyeight flex justify-center font-bold ">
+          <div className="border-[1px]flex">
+            <div className="text-seventyeight flex justify-center font-bold">
               <h1>Choose dates</h1>
             </div>
             <ListingReservation
@@ -78,7 +117,7 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
               dateRange={dateRange}
               totalPrice={totalPrice}
               onChangeDate={(value) => setDateRange(value)}
-              onSubmit={handleReservationSubmit}
+              onSubmit={onCreateReservation}
               disabled={isLoading}
               disabledDates={disabledDates}
             />
@@ -90,30 +129,25 @@ const CheckoutModal = ({ listing, onSubmit, disabled }: CheckoutModalProps) => {
             </div>
 
             <div className="flex gap-24 justify-center mt-2">
-
               <div className="widerIcon">
-              <FaCcPaypal size={80} style={{ color: '#FFC703'}} />
+                <FaCcPaypal size={80} style={{ color: "#FFC703" }} />
               </div>
 
               <div className="flex widerIcon">
                 <div>
-                  <FaCcVisa size={80} style={{ color: '#375BDB' }}/>
+                  <FaCcVisa size={80} style={{ color: "#375BDB" }} />
                 </div>
                 <div>
-                  <FaCcMastercard size={80} style={{ color: '#D34121'}} />
+                  <FaCcMastercard size={80} style={{ color: "#D34121" }} />
                 </div>
               </div>
-
             </div>
 
             <div
-              // onClick={() => router.push('/trips')}
-              // className="text-center text-seventyeight font-bold p-20 cursor-pointer"
-              // ref={modalRef}
+            // onClick={() => router.push('/trips')}
+            // className="text-center text-seventyeight font-bold p-20 cursor-pointer"
+            // ref={modalRef}
             ></div>
-          </div>
-          <div className="w-1/2 border-[1px]">
-            <Button disabled={disabled} label="korv" onClick={onSubmit} />
           </div>
         </div>
       }
