@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import { useRouter } from "next/navigation";
 import useCheckoutModal from "@/app/hooks/useCheckoutModal";
@@ -16,7 +22,9 @@ import toast from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { on } from "events";
 import { useStateManager } from "react-select";
-
+import ListingHead from "../listings/ListingHead";
+import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
+import { categories } from "../navbar/Categories";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -25,16 +33,13 @@ const initialDateRange = {
 };
 
 interface CheckoutModalProps {
-  listing: SafeListing;
+  listing: SafeListing & {
+    user: SafeUser;
+  };
   currentUser?: SafeUser | null;
 }
 
-const CheckoutModal = ({
-  listing,
-  currentUser,
-}: CheckoutModalProps) => {
-
-
+const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
   const { isOpen, onClose } = useCheckoutModal();
   // const modalRef = useRef(null);
   const router = useRouter();
@@ -54,7 +59,7 @@ const CheckoutModal = ({
     onClose();
     if (!currentUser) {
       loginModal.onOpen();
-      return 
+      return;
     }
 
     setIsLoading(true);
@@ -95,18 +100,9 @@ const CheckoutModal = ({
     }
   }, [dateRange, listing.price]);
 
-  // Handle reservation submission
-  const handleReservationSubmit = () => {
-    setIsLoading(true);
-    // Make API call to create reservation
-    // ...
-  };
-
-  // Close modal and clear state
-  const handleModalClose = () => {
-    onClose();
-    // Optionally reset state
-  };
+  const category = useMemo(() => {
+    return categories.find((item) => item.label === listing.category);
+  }, [listing.category]);
 
   return (
     <BookingModal
@@ -115,8 +111,8 @@ const CheckoutModal = ({
       onSubmit={onClose}
       body={
         <div className="flex px-10">
-          <div className="border-[1px]flex">
-            <div className="text-seventyeight flex justify-center font-bold">
+          <div className="border-[1px]flex bg-rose-500">
+            <div className="text-seventyeight flex justify-center font-bold leading-none">
               <h1>Choose dates</h1>
             </div>
             <ListingReservation
@@ -136,11 +132,11 @@ const CheckoutModal = ({
             </div>
 
             <div className="flex gap-24 justify-center mt-2">
-              <div className="widerIcon">
+              <div className="">
                 <FaCcPaypal size={80} style={{ color: "#FFC703" }} />
               </div>
 
-              <div className="flex widerIcon">
+              <div className="flex ">
                 <div>
                   <FaCcVisa size={80} style={{ color: "#375BDB" }} />
                 </div>
@@ -149,12 +145,25 @@ const CheckoutModal = ({
                 </div>
               </div>
             </div>
+          </div>
 
-            <div
-            // onClick={() => router.push('/trips')}
-            // className="text-center text-seventyeight font-bold p-20 cursor-pointer"
-            // ref={modalRef}
-            ></div>
+          <div className="md:w-1/2 flex flex-col space-y-4 p-4">
+            <div className="">
+              <ListingHead
+                imageSrc={listing.imageSrc}
+                locationValue={listing.locationValue}
+                id={listing.id}
+                currentUser={currentUser}
+              />
+            </div>
+            <div className="">
+              <ListingInfo
+                title={listing.title}
+                user={listing.user}
+                category={category}
+                locationValue={listing.locationValue}
+              />
+            </div>
           </div>
         </div>
       }

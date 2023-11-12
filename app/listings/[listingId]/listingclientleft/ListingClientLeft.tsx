@@ -12,7 +12,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 interface ListingInfoProps {
   title: string;
   user: SafeUser;
-  description: string;
+  description?: string;
   category:
     | {
         icon: IconType;

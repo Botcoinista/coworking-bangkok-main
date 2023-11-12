@@ -8,7 +8,7 @@ import HeartButton from "../HeartButton";
 import { IoLocationOutline } from "react-icons/io5";
 
 interface ListingHeadProps {
-  title: string;
+  title?: string;
   locationValue: string;
   imageSrc: string;
   id: string;
@@ -41,7 +41,7 @@ const ListingHead = ({
           alt="Image"
           src={imageSrc}
           fill
-          className="object-cover w-full"
+          className="object-contain w-full"
         />
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
