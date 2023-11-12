@@ -14,6 +14,8 @@ import { AiFillCreditCard } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { on } from "events";
+import { useStateManager } from "react-select";
 
 
 const initialDateRange = {
@@ -32,6 +34,7 @@ const CheckoutModal = ({
   currentUser,
 }: CheckoutModalProps) => {
 
+
   const { isOpen, onClose } = useCheckoutModal();
   // const modalRef = useRef(null);
   const router = useRouter();
@@ -48,8 +51,10 @@ const CheckoutModal = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const onCreateReservation = useCallback(() => {
+    onClose();
     if (!currentUser) {
-      return loginModal.onOpen();
+      loginModal.onOpen();
+      return 
     }
 
     setIsLoading(true);
@@ -66,9 +71,11 @@ const CheckoutModal = ({
         setDateRange(initialDateRange);
         //redirect to accounts
         router.push("/trips");
+        onClose();
       })
       .catch(() => {
         toast.error("Reservation failed");
+        setIsLoading(false);
       });
   }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
 
@@ -113,7 +120,7 @@ const CheckoutModal = ({
               <h1>Choose dates</h1>
             </div>
             <ListingReservation
-              price={100} // Replace with actual price per night
+              price={listing.price}
               dateRange={dateRange}
               totalPrice={totalPrice}
               onChangeDate={(value) => setDateRange(value)}

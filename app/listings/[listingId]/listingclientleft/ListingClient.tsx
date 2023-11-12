@@ -1,22 +1,15 @@
 "use client";
 
-import { Range } from "react-date-range";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { useMemo } from "react";
 
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
-import ListingReservation from "@/app/components/listings/ListingReservation";
 
-import useLoginModal from "@/app/hooks/useLoginModal";
 import ListingClientRight from "../listingclientright/ListingClientRight";
-
 
 import dynamic from "next/dynamic";
 import useCountries from "@/app/hooks/useCountries";
@@ -25,13 +18,11 @@ const Map = dynamic(() => import("../../../components/Map"), {
   ssr: false,
 });
 
-
-
-const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(),
-  key: "selection",
-};
+// const initialDateRange = {
+//   startDate: new Date(),
+//   endDate: new Date(),
+//   key: "selection",
+// };
 
 interface ListingClientProps {
   reservations?: SafeReservation[];
@@ -45,75 +36,74 @@ interface ListingClientProps {
 const ListingClient = ({
   listing,
   currentUser,
-  reservations = [],
+  // reservations = [],
   locationValue,
 }: ListingClientProps) => {
-  const loginModal = useLoginModal();
-  const router = useRouter();
-
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
-  const location = getByValue(locationValue);
 
+  // const location = getByValue(locationValue);
+  // const loginModal = useLoginModal();
+  // const router = useRouter();
 
-  const disabledDates = useMemo(() => {
-    let dates: Date[] = [];
+  // const disabledDates = useMemo(() => {
+  //   let dates: Date[] = [];
 
-    reservations.forEach((reservation) => {
-      const range = eachDayOfInterval({
-        start: new Date(reservation.startDate),
-        end: new Date(reservation.endDate),
-      });
+  //   reservations.forEach((reservation) => {
+  //     const range = eachDayOfInterval({
+  //       start: new Date(reservation.startDate),
+  //       end: new Date(reservation.endDate),
+  //     });
 
-      dates = [...dates, ...range];
-    });
+  //     dates = [...dates, ...range];
+  //   });
 
-    return dates;
-  }, [reservations]);
+  //   return dates;
+  // }, [reservations]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [totalPrice, setTotalPrice] = useState(listing.price);
+  // const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
-  const onCreateReservation = useCallback(() => {
-    if (!currentUser) {
-      return loginModal.onOpen();
-    }
+  // const onCreateReservation = useCallback(() => {
+  //   if (!currentUser) {
+  //     return loginModal.onOpen();
+  //   }
 
-    setIsLoading(true);
+  //   setIsLoading(true);
 
-    axios
-      .post("/api/reservations", {
-        totalPrice,
-        startDate: dateRange.startDate,
-        endDate: dateRange.endDate,
-        listingId: listing.id,
-      })
-      .then(() => {
-        toast.success("Reservation created successfully");
-        setDateRange(initialDateRange);
-        //redirect to accounts
-        router.push("/trips");
-      })
-      .catch(() => {
-        toast.error("Reservation failed");
-      });
-  }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
+  //   axios
+  //     .post("/api/reservations", {
+  //       totalPrice,
+  //       startDate: dateRange.startDate,
+  //       endDate: dateRange.endDate,
+  //       listingId: listing.id,
+  //     })
+  //     .then(() => {
+  //       toast.success("Reservation created successfully");
+  //       setDateRange(initialDateRange);
+  //       //redirect to accounts
+  //       router.push("/trips");
+  //     })
+  //     .catch(() => {
+  //       toast.error("Reservation failed");
+  //     });
+  // }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
 
-  useEffect(() => {
-    if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInCalendarDays(
-        dateRange.endDate,
-        dateRange.startDate
-      );
+  // useEffect(() => {
+  //   if (dateRange.startDate && dateRange.endDate) {
+  //     const dayCount = differenceInCalendarDays(
+  //       dateRange.endDate,
+  //       dateRange.startDate
+  //     );
 
-      if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
-      } else {
-        setTotalPrice(listing.price);
-      }
-    }
-  }, [dateRange, listing.price]);
+  //     if (dayCount && listing.price) {
+  //       setTotalPrice(dayCount * listing.price);
+  //     } else {
+  //       setTotalPrice(listing.price);
+  //     }
+  //   }
+  // }, [dateRange, listing.price]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
@@ -139,50 +129,32 @@ const ListingClient = ({
             md:gap-10         
           "
           >
-           
             <div className="md:col-span-4">
-
-            <ListingInfo
-              title={listing.title}
-              user={listing.user}
-              category={category}
-              description={listing.description}
-              locationValue={listing.locationValue}
-            />
-             <div className="md:order-first order-last md:col-span-4">
-              
-            <Map center={coordinates} />
+              <ListingInfo
+                title={listing.title}
+                user={listing.user}
+                category={category}
+                description={listing.description}
+                locationValue={listing.locationValue}
+              />
+              <div className="md:order-first order-last md:col-span-4">
+                <Map center={coordinates} />
               </div>
             </div>
-
-           
 
             <div
               className="
               mb-10
               md:order-last
-              md:col-span-3
-              
+              md:col-span-3             
               "
             >
               <div className=" md:col-span-3">
-
-              <ListingClientRight 
-                currentUser={currentUser}
-                listing={listing}
-                
-              />
+                <ListingClientRight
+                  currentUser={currentUser}
+                  listing={listing}
+                />
               </div>
-
-              {/* <ListingReservation
-                price={listing.price}
-                totalPrice={totalPrice}
-                onChangeDate={(value) => setDateRange(value)}
-                dateRange={dateRange}
-                onSubmit={onCreateReservation}
-                disabled={isLoading}
-                disabledDates={disabledDates}
-              /> */}
             </div>
           </div>
         </div>

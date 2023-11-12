@@ -18,7 +18,7 @@ const ListingClientRight = ({currentUser, listing }: ListingClientRightProps) =>
   return (
     <div>
       <Pricing />
-      <Button label="hej" onClick={onOpen} />
+      <Button label="Book now!" onClick={onOpen} />
       {isOpen && <CheckoutModal 
         currentUser={currentUser}
         listing={listing}

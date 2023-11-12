@@ -10,13 +10,14 @@ const ConfirmationModal = () => {
   const { isOpen, onClose } = useConfirmationModal();
   const modalRef = useRef(null); // Reference to the modal container
   const router = useRouter();
+  
   useEffect(() => {
     // Automatically close the modal and redirect to the "trips" page after 3 seconds
     if (isOpen) {
       const timeoutId = setTimeout(() => {
         onClose(); // Close the modal
         router.push('/trips'); // Redirect to the "trips" page
-      }, 2000); // 2000 milliseconds = 3 seconds
+      }, 3000); // 2000 milliseconds = 3 seconds
       // Clear the timeout if the modal is closed before the timeout finishes
       return () => clearTimeout(timeoutId);
     }
