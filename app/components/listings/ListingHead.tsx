@@ -31,7 +31,7 @@ const ListingHead = ({
       <div
         className="
         w-full
-        h-[60vh]
+        h-[30vh]
         overflow-hidden
         rounded-xl
         relative
@@ -41,7 +41,7 @@ const ListingHead = ({
           alt="Image"
           src={imageSrc}
           fill
-          className="object-contain w-full"
+          className="object-cover w-full"
         />
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
