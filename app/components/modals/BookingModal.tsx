@@ -73,7 +73,7 @@ const BookingModal = ({
             w-full
             md:w-3/5
             lg:w-3/5
-            xl:w-3/5
+            xl:w-/5
             my-6
             mx-auto
             h-full
@@ -133,7 +133,7 @@ const BookingModal = ({
                 </button>
               </div>
               {/*body*/}
-              <div className="relative p-6 flex-auto">
+              <div className="relative p-6 flex-auto flex flex-col md:flex-row">
                 {body}
               </div>
               {/*footer*/}

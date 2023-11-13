@@ -11,6 +11,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 
 interface ListingInfoProps {
   title: string;
+  email?: string;
   user: SafeUser;
   description?: string;
   category:
@@ -24,6 +25,7 @@ interface ListingInfoProps {
 
 const ListingInfo = ({
   title,
+  email,
   description,
   category,
   locationValue,

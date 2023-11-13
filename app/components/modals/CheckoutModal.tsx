@@ -15,7 +15,7 @@ import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
 
 import BookingModal from "./BookingModal";
-import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
+import { FaCcMastercard, FaCcPaypal, FaCcVisa, FaRegEnvelope } from "react-icons/fa";
 import { AiFillCreditCard } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -110,8 +110,9 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       onClose={onClose}
       onSubmit={onClose}
       body={
-        <div className="flex px-10">
-          <div className="border-[1px]flex bg-rose-500">
+        <div className="flex flex-col md:flex-row px-10 overflow-y-auto">
+          {/* Left side */}
+          <div className="md:w-1/2 flex flex-col space-y-4 p-4 bg-rose-500">
             <div className="text-seventyeight flex justify-center font-bold leading-none">
               <h1>Choose dates</h1>
             </div>
@@ -147,7 +148,8 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
             </div>
           </div>
 
-          <div className="md:w-1/2 flex flex-col space-y-4 p-4">
+          {/* // Right side */}
+          <div className="w-full md:w-1/2 flex flex-col space-y-4 p-4 bg-rose-200">
             <div className="">
               <ListingHead
                 imageSrc={listing.imageSrc}
@@ -156,13 +158,22 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 currentUser={currentUser}
               />
             </div>
-            <div className="">
+            
+
+            <div className="text-xl">
               <ListingInfo
-                title={listing.title}
+                title={listing.title} 
+                
                 user={listing.user}
                 category={category}
                 locationValue={listing.locationValue}
               />
+            <div className="flex gap-2 mb-4">
+        <FaRegEnvelope size={16} className="mt-1 text-lightgray" />
+        <span className="flex text-custombase text-lightgray">
+          bookings@coworkingbangkok.com
+        </span>
+      </div>
             </div>
           </div>
         </div>

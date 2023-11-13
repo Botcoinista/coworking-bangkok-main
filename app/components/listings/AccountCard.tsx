@@ -7,7 +7,6 @@ import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { BsFillPencilFill } from "react-icons/bs";
-import Button from "../Button";
 
 interface AccountCardProps {
   data: SafeListing;
@@ -39,7 +38,7 @@ const AccountCard = ({
 
       if (disabled) {
         return;
-      }
+      } 
 
       onAction?.(actionId);
     },
@@ -62,25 +61,26 @@ const AccountCard = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PP")} - ${format(end, "PP")}`;
+    // return `${format(start, "PP")} - ${format(end, "PP")}`;
+    return `${format(start, 'MMM d')} - ${format(end, 'MMM d')}`;
   }, [reservation]);
 
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="flex bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow">
+      className="flex bg-white sm:p-6 md:p-6 lg:p-6 mobile:p-2 rounded-lg custom-shadow cursor-pointer transition-shadow"
+    >
       <div
         className="
+      w-1/3
       aspect-square
       relative
       overflow-hidden
-      rounded
+      rounded-tr-3xl
+      rounded-bl-3xl
       mr-4
     "
-        style={{
-          height: '331px',
-          width: '468px',
-        }}>
+      >
         <Image
           fill
           alt="Listing"
@@ -97,21 +97,22 @@ const AccountCard = ({
       <div className="flex flex-col justify-between flex-grow">
         <div>
           <div className="flex flex-row justify-between">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+            <h2 className="text-mobile sm:text-twenty md:text-thirtysix lg:text-fiftysix font-bold text-gray-800 mb-2">
               {data.title}
             </h2>
             <div className="flex items-center space-x-2 text-gray-600 mb-20"></div>
-            <BsFillPencilFill size={40} />
-            {/* Add more icons or actions here as needed */}
+            
+            <BsFillPencilFill className="w-5 h-5 sm:w-8 sm:h-8" />
+            
           </div>
           <hr />
-          <p className="text-gray-600 mb-2 max-w-md ">
+          <p className="text-gray-600 mb-2 max-w-md hidden md:block md:text-twenty lg:text-twentyfour ">
             {data.description}
           </p>
         </div>
-        <div className="flex justify-between items-center">
-          <p className="text-black-500 font-bold mb-2">{reservationDate}</p>
-          <span className="text-black-500 font-bold">${price} THB</span>
+        <div className="flex justify-between items-center mobile:text-custom-small md:text-twenty lg:text-twentyfour ">
+          <p className="text-black-500 mb-2">{reservationDate}</p>
+          <span className="text-black-500 font-bold ">${price} THB</span>
         </div>
       </div>
     </div>

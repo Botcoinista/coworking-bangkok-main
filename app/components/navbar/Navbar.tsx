@@ -36,7 +36,7 @@ const Navbar = ({ currentUser }: NavbarProps) => {
       >
 
         <HomeLogo />
-        <Search />
+        {/* <Search /> */}
         <UserMenu currentUser={currentUser} />
       </div>
       {/* <Categories /> */}
