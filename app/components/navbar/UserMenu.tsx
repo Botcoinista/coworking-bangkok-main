@@ -50,7 +50,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
   return (
     <div className="relative" ref={wrapperRef}>
       <div className="flex flex-row items-center gap-3">
-        <div
+        {/* <div
           //   onClick={toggleOpen}
           className="
           bg-lightestGray
@@ -69,7 +69,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
           "
         >
           <AiOutlineMenu className="react-icon" />
-        </div>
+        </div> */}
         <div
           onClick={toggleOpen}
           className={
@@ -132,15 +132,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         <div
           className="
             absolute
-            md:w-3/4
             rounded-xl
             shadow-md
-            w-[40vw]
             bg-white
             overflow-hidden
-            right-0
-            top-12
-            text-sm
+            right-0          
+            text-sm           
             "
         >
           <div className="flex flex-col cursor-pointer">

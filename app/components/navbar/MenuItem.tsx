@@ -18,7 +18,8 @@ const MenuItem = ({ onClick, label }: MenuItemProps) => {
                 hover:bg-neutral-100
                 transition
                 cursor-pointer
-                ">
+                "
+                >
             {label}
         </div>
     );

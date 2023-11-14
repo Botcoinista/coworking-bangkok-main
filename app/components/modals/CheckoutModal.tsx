@@ -173,7 +173,7 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
               />
               <Email />
 
-              <div className="">
+              <div className="order-first md:order-last">
                 <ReservationButton
                   disabled={isLoading}
                   totalPrice={totalPrice}
