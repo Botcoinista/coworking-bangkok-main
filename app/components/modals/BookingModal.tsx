@@ -1,6 +1,6 @@
-'use client';
-import { useCallback, useEffect, useState } from 'react';
-import { IoMdClose } from 'react-icons/io';
+"use client";
+import { useCallback, useEffect, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -54,7 +54,7 @@ const BookingModal = ({
   return (
     <>
       <div
-        className="
+        className="       
         justify-center
         items-center
         flex
@@ -66,33 +66,31 @@ const BookingModal = ({
         outline-none
         focus:outline-none
         bg-neutral-800/70
-    ">
+    "
+      >
         <div
           className="
             relative
+            flex
+            justify-center
             w-full
-            md:w-3/5
-            lg:w-3/5
-            xl:w-/5
+            mxs:w-3/6  
+            md:w-6/6  
+            lg:w-6/6 
+            xl:w-6/6  
+            2xl:w-6/6  
             my-6
             mx-auto
             h-full
             lg:h-auto
             md:h-auto
-            ">
+            "
+        >
           {/*content*/}
-          <div
-            className={`
-            translate
-            duration.300
-            h-full
-            ${showModal ? 'translate-y-0' : 'translate-y-full'}
-            ${showModal ? 'opacity-100' : 'opacity-0'}
-            `}>
+          <div>
             <div
               className="
                         translate
-                        h-full
                         lg:h-auto
                         md:h-auto
                         border-0
@@ -104,20 +102,22 @@ const BookingModal = ({
                         flex-col
                         w-full
                         bg-white
-                        outline-none
-                        focus:outline-none
-                    ">
+                      
+                    "
+            >
               {/*header*/}
               <div
                 className="
                   flex
+                  
                   items-center
                   p-6
                   rounder-t
                   justify-center
                   relative
                 
-                  ">
+                  "
+              >
                 <button
                   onClick={handleClose}
                   className="
@@ -126,19 +126,23 @@ const BookingModal = ({
                     hover:opacity-70
                     transition
                     absolute
-                    right-5
+                    right-12
                     mt-6
-                    ">
+                    "
+                >
                   <IoMdClose size={28} />
                 </button>
               </div>
               {/*body*/}
-              <div className="relative p-6 flex-auto flex flex-col md:flex-row">
+              <div
+                className="relative p-6 flex-auto flex flex-col md:flex-row 
+              
+              "
+              >
                 {body}
               </div>
               {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
-              </div>
+              <div className="flex flex-col gap-2 p-6"></div>
             </div>
           </div>
         </div>

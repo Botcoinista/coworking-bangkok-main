@@ -15,7 +15,12 @@ import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
 
 import BookingModal from "./BookingModal";
-import { FaCcMastercard, FaCcPaypal, FaCcVisa, FaRegEnvelope } from "react-icons/fa";
+import {
+  FaCcMastercard,
+  FaCcPaypal,
+  FaCcVisa,
+  FaRegEnvelope,
+} from "react-icons/fa";
 import { AiFillCreditCard } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -25,6 +30,7 @@ import { useStateManager } from "react-select";
 import ListingHead from "../listings/ListingHead";
 import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
 import { categories } from "../navbar/Categories";
+import Button from "../Button";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -112,8 +118,8 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       body={
         <div className="flex flex-col md:flex-row px-10 overflow-y-auto">
           {/* Left side */}
-          <div className="md:w-1/2 flex flex-col space-y-4 p-4 bg-rose-500">
-            <div className="text-seventyeight flex justify-center font-bold leading-none">
+          <div className="md:w-1/2 flex flex-col p-4 order-last md:order-first bg-rose-600">
+            <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
               <h1>Choose dates</h1>
             </div>
             <ListingReservation
@@ -125,7 +131,7 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
               disabled={isLoading}
               disabledDates={disabledDates}
             />
-            <div className=" text-3xl font-bold flex justify-center gap-2 mt-8">
+            <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8">
               <p>Choose Payment Method</p>
               <div className="">
                 <AiFillCreditCard size={30} />
@@ -133,23 +139,23 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
             </div>
 
             <div className="flex gap-24 justify-center mt-2">
-              <div className="">
-                <FaCcPaypal size={80} style={{ color: "#FFC703" }} />
+              <div className="widerIcon">
+                <FaCcPaypal size={60} style={{ color: "#FFC703" }} />
               </div>
 
-              <div className="flex ">
+              <div className="flex widerIcon">
                 <div>
-                  <FaCcVisa size={80} style={{ color: "#375BDB" }} />
+                  <FaCcVisa size={60} style={{ color: "#375BDB" }} />
                 </div>
                 <div>
-                  <FaCcMastercard size={80} style={{ color: "#D34121" }} />
+                  <FaCcMastercard size={60} style={{ color: "#D34121" }} />
                 </div>
               </div>
             </div>
           </div>
 
           {/* // Right side */}
-          <div className="w-full md:w-1/2 flex flex-col space-y-4 p-4 bg-rose-200">
+          <div className="w-full md:w-1/2 flex flex-col space-y-4 p-4 order-first md:order-last bg-rose-200">
             <div className="">
               <ListingHead
                 imageSrc={listing.imageSrc}
@@ -158,22 +164,23 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 currentUser={currentUser}
               />
             </div>
-            
 
             <div className="text-xl">
               <ListingInfo
-                title={listing.title} 
-                
+                title={listing.title}
                 user={listing.user}
                 category={category}
                 locationValue={listing.locationValue}
               />
-            <div className="flex gap-2 mb-4">
+              <div className="border-4">
+                <Button label="Book Now" onClick={onCreateReservation} />
+              </div>
+              {/* <div className="flex gap-2 mb-4">
         <FaRegEnvelope size={16} className="mt-1 text-lightgray" />
         <span className="flex text-custombase text-lightgray">
           bookings@coworkingbangkok.com
         </span>
-      </div>
+      </div> */}
             </div>
           </div>
         </div>

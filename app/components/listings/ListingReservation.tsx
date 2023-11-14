@@ -66,7 +66,7 @@ const ListingReservation = ({
         onChange={(value) => onChangeDate(value.selection)}
     />
     <hr />
-    <div className="p-4">
+    {/* <div className="p-4">
         <Button 
             disabled={disabled}
             label="Book now"
@@ -89,7 +89,7 @@ const ListingReservation = ({
             ${totalPrice}
         </div>
 
-    </div>
+    </div> */}
   </div>;
 };
 
