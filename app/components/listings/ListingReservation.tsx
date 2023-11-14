@@ -4,40 +4,22 @@ import { Range } from "react-date-range";
 
 import Calender from "../inputs/Calender";
 
-import Button from "../Button";
-import useConfirmationModal from "@/app/hooks/useConfirmationModal";
 
 interface ListingReservationProps {
-  price: number;
+ 
   dateRange: Range;
-  totalPrice: number;
   onChangeDate: (value: Range) => void;
-  onSubmit: () => void;
-  disabled: boolean;
   disabledDates: Date[];
 }
 
 const ListingReservation = ({
-  price,
+  
   dateRange,
-  totalPrice,
   onChangeDate,
-  onSubmit,
-  disabled,
   disabledDates,
 }: ListingReservationProps) => {
 
-  const { isOpen, onOpen, onClose } = useConfirmationModal();
 
-  const handleButtonClick = () => {
-    // Open the confirmation modal
-    onOpen();
-    // Call the onSubmit function after a delay (you can adjust the delay as needed)
-    setTimeout(() => {
-      onSubmit();
-      onClose();
-    }, 3000); 
-  };
 
   return <div 
   className="
@@ -47,49 +29,13 @@ const ListingReservation = ({
     border-neutral-200
     overflow-hidden
   ">
-    <div className="
-    flex flex-row items-center gap-1 p-4
-    ">
-        <div className="
-        text-2xl font-semibold
-        ">
-            ${price}
-        </div>
-        <div className="font-light text-neutral-600">
-            night
-        </div>
-    </div>
-    <hr />
     <Calender
         value={dateRange}
         disabledDates={disabledDates}
         onChange={(value) => onChangeDate(value.selection)}
     />
-    <hr />
-    {/* <div className="p-4">
-        <Button 
-            disabled={disabled}
-            label="Book now"
-            onClick={handleButtonClick}
-        />
-    </div>
-    <div className="
-    p-4
-    flex
-    flex-row
-    items-center
-    justify-between
-    font-semibold
-    text-lg
-    ">
-        <div>
-            Total
-        </div>
-        <div>
-            ${totalPrice}
-        </div>
-
-    </div> */}
+   
+   
   </div>;
 };
 

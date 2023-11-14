@@ -137,7 +137,7 @@ const ListingClient = ({
                 description={listing.description}
                 locationValue={listing.locationValue}
               />
-              <div className="md:order-first order-last md:col-span-4">
+              <div className="md:order-first order-last md:col-span-4 mt-20">
                 <Map center={coordinates} />
               </div>
             </div>

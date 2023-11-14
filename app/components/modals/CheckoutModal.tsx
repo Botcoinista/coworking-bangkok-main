@@ -31,6 +31,9 @@ import ListingHead from "../listings/ListingHead";
 import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
 import { categories } from "../navbar/Categories";
 import Button from "../Button";
+import ReservationButton from "../ReservationButton";
+import Email from "../Email";
+
 
 const initialDateRange = {
   startDate: new Date(),
@@ -118,26 +121,21 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       body={
         <div className="flex flex-col md:flex-row px-10 overflow-y-auto">
           {/* Left side */}
-          <div className="md:w-1/2 flex flex-col p-4 order-last md:order-first bg-rose-600">
+          <div className="md:w-1/2 flex justify-between flex-col p-4 order-last md:order-first">
             <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
-              <h1>Choose dates</h1>
+              <h1 className="text-darkgray">Choose dates</h1>
             </div>
             <ListingReservation
-              price={listing.price}
               dateRange={dateRange}
-              totalPrice={totalPrice}
               onChangeDate={(value) => setDateRange(value)}
-              onSubmit={onCreateReservation}
-              disabled={isLoading}
               disabledDates={disabledDates}
             />
-            <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8">
-              <p>Choose Payment Method</p>
-              <div className="">
-                <AiFillCreditCard size={30} />
-              </div>
-            </div>
+            <div>
 
+            <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8 text-darkgray">
+              <p>Choose Payment Method</p>
+              <AiFillCreditCard size={30} />
+            </div>
             <div className="flex gap-24 justify-center mt-2">
               <div className="widerIcon">
                 <FaCcPaypal size={60} style={{ color: "#FFC703" }} />
@@ -152,10 +150,11 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
 
           {/* // Right side */}
-          <div className="w-full md:w-1/2 flex flex-col space-y-4 p-4 order-first md:order-last bg-rose-200">
+          <div className="w-full md:w-1/2 flex space-between flex-col space-y-4 p-4 order-first md:order-last">
             <div className="">
               <ListingHead
                 imageSrc={listing.imageSrc}
@@ -172,8 +171,14 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 category={category}
                 locationValue={listing.locationValue}
               />
-              <div className="border-4">
-                <Button label="Book Now" onClick={onCreateReservation} />
+              <Email />
+
+              <div className="">
+                <ReservationButton
+                  disabled={isLoading}
+                  totalPrice={totalPrice}
+                  onSubmit={onCreateReservation}
+                />
               </div>
               {/* <div className="flex gap-2 mb-4">
         <FaRegEnvelope size={16} className="mt-1 text-lightgray" />

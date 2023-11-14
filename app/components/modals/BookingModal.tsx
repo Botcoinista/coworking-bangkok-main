@@ -109,7 +109,6 @@ const BookingModal = ({
               <div
                 className="
                   flex
-                  
                   items-center
                   p-6
                   rounder-t

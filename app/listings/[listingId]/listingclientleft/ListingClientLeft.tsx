@@ -42,14 +42,6 @@ const ListingInfo = ({
         icon={<IoLocationOutline size={16} className="text-semilightgray" />}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-
-      <div className="flex gap-2 mb-4">
-        <FaRegEnvelope size={16} className="mt-1 text-lightgray" />
-        <span className="flex text-custombase text-lightgray">
-          bookings@coworkingbangkok.com
-        </span>
-      </div>
-
       <div className=" border-[1px] w-[fit-content] rounded-tr-lg rounded-bl-lg p-1">
         {category && (
           <ListingCategory
@@ -59,7 +51,7 @@ const ListingInfo = ({
           />
         )}
       </div>
-      <div className="text-lg font-light text-gray mb-20 mt-8">
+      <div className="text-lg font-light text-gray mt-8">
         {description}
       </div>
     </div>
