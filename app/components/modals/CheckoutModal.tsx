@@ -122,7 +122,10 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       body={
         <div className="flex flex-col md:flex-row overflow-y-auto">
           {/* Left side */}
-          <div className="md:w-1/2 flex justify-between flex-col order-last md:order-first">
+          <div>
+            
+          </div>
+          <div className="md:w-1/2 flex justify-between flex-col order-last md:order-first gap-">
           <div>
             <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
               <h1 className="text-darkgray mb-4">Choose dates</h1>
@@ -158,7 +161,7 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
           </div>
 
           {/* // Right side */}
-          <div className="w-full md:w-1/2 flex space-between flex-col  px-4 order-first md:order-last">
+          <div className="w-full md:w-1/2 flex space-between flex-col px-4 order-first md:order-last">
             <div className="">
               <ListingHead
                 imageSrc={[listing.imageSrc[0]]}

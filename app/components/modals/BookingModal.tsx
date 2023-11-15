@@ -129,7 +129,7 @@ const BookingModal = ({
                     transition
                     absolute
                     right-2
-                    
+                    z-10
                     "
                 >
                   <IoMdClose size={32} />
