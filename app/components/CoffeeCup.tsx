@@ -19,7 +19,7 @@ const CoffeeBanner = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center md:text-left md:w-3/5">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white my-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-seventyeight font-bold text-white my-4">
           Do you <span className="text-yellow">love coffee</span> as much as us?
           Most of our places have{" "}
           <span className="text-yellow">free coffee!</span>

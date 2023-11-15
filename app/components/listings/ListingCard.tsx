@@ -66,7 +66,7 @@ const ListingCard = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PP")} - ${format(end, 'PP')}`;
+    return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
   return (
@@ -99,16 +99,16 @@ const ListingCard = ({
             relative   
             "
         >
-          <Image
-            fill
-            src={data.imageSrc}
-            alt="Listing"
-            className="
-            object-cover
-            transition
-            group-hover:scale-110   
-            "
-          />
+          {data.imageSrc.map((imageUrl, index) => (
+            <div key={index} className="absolute inset-0 w-full h-full">
+              <Image
+                alt="Upload"
+                fill
+                style={{ objectFit: "cover" }}
+                src={imageUrl}
+              />
+            </div>
+          ))}
           <div className="absolute top-2 left-2 ">
             <RatingStar />
           </div>
@@ -123,7 +123,7 @@ const ListingCard = ({
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
             <div className="font-rajhadi font-semibold text-lg mb-3">
-            {location?.region}, {location?.label}
+              {location?.region}, {location?.label}
             </div>
             <div className="font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
               <IoLocationOutline /> {reservationDate || data.category}
@@ -139,12 +139,12 @@ const ListingCard = ({
 
         {onAction && actionLabel && (
           <Button
-          disabled={disabled}
-          small
-          label={actionLabel}
-          onClick={handleCancel()}
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel()}
           />
-          )}
+        )}
       </div>
     </div>
   );

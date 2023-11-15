@@ -72,7 +72,7 @@ const AccountCard = ({
     >
       <div
         className="
-      w-1/3
+      
       aspect-square
       relative
       overflow-hidden
@@ -84,7 +84,7 @@ const AccountCard = ({
         <Image
           fill
           alt="Listing"
-          src={data.imageSrc}
+          src={data.imageSrc[0]}
           className="
         object-cover
         h-full

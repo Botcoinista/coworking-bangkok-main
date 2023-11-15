@@ -1,74 +1,74 @@
-"use client"
-import { CldUploadWidget } from "next-cloudinary"
-import Image from "next/image"
-import { useCallback } from "react"
-import { TbPhotoPlus } from "react-icons/tb"
-
+"use client";
+import { CldUploadWidget } from "next-cloudinary";
+import Image from "next/image";
+import { useCallback } from "react";
+import { TbPhotoPlus } from "react-icons/tb";
 declare global {
-    var cloudinary: any
+  var cloudinary: any;
 }
-
+// Import statements...
 interface ImageUploadProps {
-    onChange: (value: string) => void
-    value: string
+  onChange: (value: string[]) => void;
+  value: string[];
 }
+const ImageUpload = ({ onChange, value }: ImageUploadProps) => {
 
-const ImageUpload = ({ onChange, value }:ImageUploadProps) => {
-
-    const handleUpload = useCallback((result: any) => {
-        onChange(result.info.secure_url)
-    }, [onChange])
-
+  const handleUpload = useCallback(
+    (result: any) => {
+      onChange([...value, result.info.secure_url]);
+    },
+    [onChange, value]
+  );
   return (
     <CldUploadWidget
-        onUpload={handleUpload}
-        uploadPreset="k3nqau5e"
-        options={{
-            maxFiles: 1,
-        }}
-        >
-            {({ open }) => {
-                return (
-                    <div
-                    onClick={() => open?.()}
-                    className="
-                    relative
-                    cursor-pointer
-                    hover:opacity-80
-                    transition
-                    border-dashed
-                    border-2
-                    p-20
-                    border-neutral-200
-                    flex
-                    justify-center
-                    items-center
-                    flex-col
-                    gap-4
-                    text-neutral-400
+      onUpload={handleUpload}
+      uploadPreset="k3nqau5e"
+      options={{
+        maxFiles: 5,
+      }}
+    >
+      {({ open }) => {
+        return (
+          <div
+            onClick={() => open?.()}
+            className="
+                        relative
+                        cursor-pointer
+                        hover:opacity-70
+                        transition
+                        border-dashed
+                        border-2
+                        p-20
+                        border-neutral-300
+                        flex
+                        flex-col
+                        justify-center
+                        items-center
+                        gap-4
+                        text-neutral-600
                     "
-                    >
-                        <TbPhotoPlus size={50 }/>
-                        <div className="font-semibold text-lg">
-                            Click to upload image
-                        </div>
-                        {value && (
-                            <div className="absolute inset-0 w-full h-full"
-                            >
-                                <Image 
-                                    alt="Upload"
-                                    fill
-                                    style={{ objectFit: "cover" }}
-                                    src={value}                                
-                                />
-                            </div>
-                            )}
-                    </div>
-                )
-            }}
-        </CldUploadWidget>
+          >
+            <TbPhotoPlus size={50} />
+            <div className="font-semibold text-lg">Click to upload</div>
+            {value && value.length > 0 && (
+              <div className="grid grid-cols-5 gap-4 mt-4">
+                {value.map((url, index) => (
+                  <div key={index} className="relative">
+                    <Image
+                      alt={`Upload ${index + 1}`}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      src={url || "/placeholder-image.jpg"} // Use a placeholder image or handle this case
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      }}
+    </CldUploadWidget>
+  );
+};
 
-  )
-}
-
-export default ImageUpload
+export default ImageUpload;
