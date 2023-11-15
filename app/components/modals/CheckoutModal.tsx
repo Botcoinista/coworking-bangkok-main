@@ -174,11 +174,11 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
             <div className="text-xl">
               <ListingInfo
                 title={listing.title}
+                email={listing.email}
                 user={listing.user}
                 category={category}
                 locationValue={listing.locationValue}
               />
-              <Email />
               <div className="order-first md:order-last">
                 <ReservationButton
                   disabled={isLoading}

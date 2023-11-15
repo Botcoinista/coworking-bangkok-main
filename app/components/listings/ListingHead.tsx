@@ -9,6 +9,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 interface ListingHeadProps {
   title?: string;
+  email?: string;
   locationValue: string;
   imageSrc: string[];
   id: string;
@@ -17,6 +18,7 @@ interface ListingHeadProps {
 
 const ListingHead = ({
   title,
+  email,
   locationValue,
   imageSrc,
   id,
