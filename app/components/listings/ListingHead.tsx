@@ -29,8 +29,8 @@ const ListingHead = ({
   return (
     <>
       {/* Testar array images */}
-      <div className="w-full flex flex-col md:flex-row justify-center mt-24 gap-x-1 overflow-hidden custom-listing-border-radius">
-        <div className="w-full h-[40vh] md:h-[40vh] mb-1 overflow-hidden relative">
+      <div className="w-full flex flex-col md:flex-row justify-center gap-x-1 overflow-hidden rounded-bl-3xl rounded-tr-3xl custom-listing-border-radius">
+        <div className=" w-full h-[30vh] md:h-[30vh] mb-1 overflow-hidden relative">
           <div className="flex">
             <Image
               alt="Property Image"
@@ -38,15 +38,18 @@ const ListingHead = ({
               layout="fill"
               objectFit="cover"
             />
+            {/* <div className="absolute top-5 right-5">
+                  <HeartButton listingId={id} currentUser={currentUser} />
+                </div> */}
           </div>
         </div>
   
-        <div className="flex flex-row md:flex-col gap-1">
+        <div className="flex flex-row md:flex-col gap-1 ">
           <div className="flex gap-1">
             {imageSrc.slice(1, 3).map((image, index) => (
               <div
                 key={index}
-                className="md:w-[15vw] w-[23vw] md:h-[19.8vh] h-[15vh] overflow-hidden relative"
+                className="md:w-[15vw] w-[23vw] md:h-[15vh] h-[15vh] overflow-hidden relative"
               >
                 <Image
                   alt={`Image ${index}`}
@@ -57,11 +60,11 @@ const ListingHead = ({
               </div>
             ))}
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-1 ">
             {imageSrc.slice(3, 5).map((image, index) => (
               <div
                 key={index}
-                className="md:w-[15vw] w-[23vw] md:h-[19.8vh] h-[15vh] overflow-hidden relative"
+                className="sm:w[5vw] md:w-[15vw] w-[23vw] md:h-[15] h-[15vh] overflow-hidden relative "
               >
                 <Image
                   alt={`Image ${index}`}

@@ -120,17 +120,20 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       onClose={onClose}
       onSubmit={onClose}
       body={
-        <div className="flex flex-col md:flex-row px-10 overflow-y-auto">
+        <div className="flex flex-col md:flex-row overflow-y-auto">
           {/* Left side */}
-          <div className="md:w-1/2 flex justify-between flex-col p-4 order-last md:order-first">
+          <div className="md:w-1/2 flex justify-between flex-col order-last md:order-first">
+          <div>
             <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
-              <h1 className="text-darkgray">Choose dates</h1>
+              <h1 className="text-darkgray mb-4">Choose dates</h1>
             </div>
             <ListingReservation
               dateRange={dateRange}
               onChangeDate={(value) => setDateRange(value)}
               disabledDates={disabledDates}
             />
+
+            </div>
             <div>
 
             <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8 text-darkgray">
@@ -155,10 +158,10 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
           </div>
 
           {/* // Right side */}
-          <div className="w-full md:w-1/2 flex space-between flex-col space-y-4 p-4 order-first md:order-last">
+          <div className="w-full md:w-1/2 flex space-between flex-col  px-4 order-first md:order-last">
             <div className="">
               <ListingHead
-                imageSrc={listing.imageSrc}
+                imageSrc={[listing.imageSrc[0]]}
                 locationValue={listing.locationValue}
                 id={listing.id}
                 currentUser={currentUser}
@@ -173,7 +176,6 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 locationValue={listing.locationValue}
               />
               <Email />
-
               <div className="order-first md:order-last">
                 <ReservationButton
                   disabled={isLoading}
@@ -181,12 +183,6 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                   onSubmit={onCreateReservation}
                 />
               </div>
-              {/* <div className="flex gap-2 mb-4">
-        <FaRegEnvelope size={16} className="mt-1 text-lightgray" />
-        <span className="flex text-custombase text-lightgray">
-          bookings@coworkingbangkok.com
-        </span>
-      </div> */}
             </div>
           </div>
         </div>

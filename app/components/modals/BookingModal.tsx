@@ -66,6 +66,7 @@ const BookingModal = ({
         outline-none
         focus:outline-none
         bg-neutral-800/70
+        
     "
       >
         <div
@@ -84,6 +85,7 @@ const BookingModal = ({
             h-full
             lg:h-auto
             md:h-auto
+            
             "
         >
           {/*content*/}
@@ -102,6 +104,7 @@ const BookingModal = ({
                         flex-col
                         w-full
                         bg-white
+                        p-4
                       
                     "
             >
@@ -110,7 +113,7 @@ const BookingModal = ({
                 className="
                   flex
                   items-center
-                  p-6
+                  pt-4
                   rounder-t
                   justify-center
                   relative
@@ -120,28 +123,27 @@ const BookingModal = ({
                 <button
                   onClick={handleClose}
                   className="
-                    p-1
+                    
                     border-0
                     hover:opacity-70
                     transition
                     absolute
-                    right-12
-                    mt-6
+                    right-2
+                    
                     "
                 >
-                  <IoMdClose size={28} />
+                  <IoMdClose size={32} />
                 </button>
               </div>
               {/*body*/}
               <div
-                className="relative p-6 flex-auto flex flex-col md:flex-row 
+                className="relative py-8 flex-auto flex flex-col md:flex-row 
               
               "
               >
                 {body}
               </div>
-              {/*footer*/}
-              <div className="flex flex-col gap-2 p-6"></div>
+             
             </div>
           </div>
         </div>

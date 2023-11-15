@@ -33,6 +33,7 @@ const ListingClient = ({
   // reservations = [],
   locationValue,
 }: ListingClientProps) => {
+  
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
   const category = useMemo(() => {

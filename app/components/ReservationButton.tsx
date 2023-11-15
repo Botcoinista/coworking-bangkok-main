@@ -28,7 +28,7 @@ const ReservationButton = ({ disabled, totalPrice, onSubmit }: ReservationButton
     <>
     
 <div className="
-p-4
+py-2
 flex
 flex-row
 items-center
@@ -44,7 +44,7 @@ text-lg
     </div>
 
 </div>
-    <div className="p-4">
+    <div className="">
     <Button 
         disabled={disabled}
         label="Book now"
