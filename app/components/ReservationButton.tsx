@@ -40,7 +40,7 @@ text-lg
         Total
     </div>
     <div>
-        ${totalPrice}
+         {totalPrice} THB
     </div>
 
 </div>

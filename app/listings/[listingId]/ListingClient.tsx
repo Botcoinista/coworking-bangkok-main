@@ -17,7 +17,6 @@ import ConfirmationModal from "@/app/components/modals/ConfirmationModal";
 import Ratings from "@/app/components/Ratings";
 import useCheckoutModal from "@/app/hooks/useCheckoutModal";
 
-
 const Map = dynamic(() => import("../../components/Map"), {
   ssr: false,
 });
@@ -34,7 +33,7 @@ interface ListingClientProps {
 const ListingClient = ({
   listing,
   currentUser,
-  
+
   locationValue,
 }: ListingClientProps) => {
   const { getByValue } = useCountries();
@@ -49,7 +48,7 @@ const ListingClient = ({
   return (
     <Container>
       <div className="max-w-screen-4XL mx-auto">
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-12 ">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
@@ -95,7 +94,7 @@ const ListingClient = ({
               {/* RIGHTSIDE */}
 
               <div>
-                <Pricing />
+                <Pricing data={listing} />
                 <Button label="Book now!" onClick={onOpen} />
                 {isOpen && (
                   <CheckoutModal currentUser={currentUser} listing={listing} />

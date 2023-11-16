@@ -3,6 +3,7 @@
 import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
 import { BiDollar } from 'react-icons/bi';
 
+
 interface inputProps {
   id: string;
   label: string;
@@ -17,16 +18,11 @@ interface inputProps {
 const Input = ({ id, label, type, disabled, formatPrice, required, register, errors }: inputProps) => {
   return (
     <div className="w-full relative">
+     
       {formatPrice && (
-        <BiDollar
-          size={24}
-          className="
-            text-neutral-700
-            absolute
-            top-5
-            left-2
-            "
-        />
+        <div className="absolute top-6 left-2">
+           <span>THB</span>
+        </div>
       )}
       <input
         id={id}
@@ -48,7 +44,7 @@ const Input = ({ id, label, type, disabled, formatPrice, required, register, err
         transition
         disabled:opacity-70
         disabled:cursor-not-allowed
-        ${formatPrice ? 'pl-9' : 'pl-4'}
+        ${formatPrice ? 'pl-12' : 'pl-4'}
         ${errors[id] ? 'border-red-500' : 'border-neutral-300'}
         ${errors[id] ? 'focus:border-red-500' : 'focus:border-black'}
         `}
@@ -63,7 +59,7 @@ const Input = ({ id, label, type, disabled, formatPrice, required, register, err
       top-5
       z-10
       origin-[0]
-      ${formatPrice ? 'left-9' : 'left-4'}
+      ${formatPrice ? 'left-12' : 'left-4'}
       peer-placeholder-shown:scale-100
       peer-placeholder-shown:translate-y-0
       peer-focus:scale-75

@@ -13,7 +13,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
 import BookingModal from "./BookingModal";
-import { FaCcMastercard, FaCcPaypal, FaCcVisa, } from "react-icons/fa";
+import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
 import { AiFillCreditCard } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -22,7 +22,6 @@ import ListingHead from "../listings/ListingHead";
 import ListingInfo from "../listings/ListingInfo";
 import { categories } from "../navbar/Categories";
 import ReservationButton from "../ReservationButton";
-
 
 const initialDateRange = {
   startDate: new Date(),
@@ -82,7 +81,6 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       });
   }, [totalPrice, dateRange, listing?.id, router, loginModal, currentUser]);
 
-  // Replicate date change effect
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInCalendarDays(
@@ -90,29 +88,40 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
         dateRange.startDate
       );
 
+      let discount = 0; // No discount initially
+
+      // Apply a 10% discount for bookings of at least 7 days but less than 30 days
+      if (dayCount >= 7 && dayCount < 30) {
+        discount = 0.1; // 10% discount
+      }
+      // Apply an additional 10% discount (total 20%) for bookings of at least 30 days
+      else if (dayCount >= 30) {
+        discount = 0.2; // 20% discount
+      }
+
+      // Calculate the total price after discount
       if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
+        const originalTotal = dayCount * listing.price;
+        const discountedTotal = originalTotal * (1 - discount);
+        setTotalPrice(discountedTotal);
       } else {
         setTotalPrice(listing.price);
       }
     }
   }, [dateRange, listing.price]);
 
-const categoriesForListing = useMemo(() => {
-  // The useMemo hook is used to compute a value and memoize it.
-  // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
+  const categoriesForListing = useMemo(() => {
+    // The useMemo hook is used to compute a value and memoize it.
+    // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
 
-  return categories.filter((item) => listing.category.includes(item.label));
-  // The code inside the useMemo function filters the 'categories' array based on a condition.
-  // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
-  // includes the 'item.label'. If it does, the 'item' is included in the result.
-
-}, [listing.category]);
-// The second argument to useMemo is an array of dependencies.
-// When any of these dependencies change, useMemo will recompute the value.
-// In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
-
-  
+    return categories.filter((item) => listing.category.includes(item.label));
+    // The code inside the useMemo function filters the 'categories' array based on a condition.
+    // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
+    // includes the 'item.label'. If it does, the 'item' is included in the result.
+  }, [listing.category]);
+  // The second argument to useMemo is an array of dependencies.
+  // When any of these dependencies change, useMemo will recompute the value.
+  // In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
 
   return (
     <BookingModal
@@ -120,49 +129,47 @@ const categoriesForListing = useMemo(() => {
       onClose={onClose}
       onSubmit={onClose}
       body={
-        <div className="flex flex-col md:flex-row overflow-y-auto">
+        <div className="flex flex-col md:flex-row overflow-y-auto gap-3">
           {/* Left side */}
-          <div>
-            
-          </div>
-          <div className="md:w-1/2 flex justify-between flex-col order-last md:order-first gap-">
-          <div>
-            <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
-              <h1 className="text-darkgray mb-4">Choose dates</h1>
-            </div>
-            <ListingReservation
-              dateRange={dateRange}
-              onChangeDate={(value) => setDateRange(value)}
-              disabledDates={disabledDates}
-            />
-
+        
+          <div className="md:w-1/2 flex justify-between flex-col order-last md:order-first">
+            <div>
+              <div className="mxs:text-thirtysix mobile:text-fortyeight lg:text-fortyeight flex justify-center font-bold leading-none">
+                <h1 className="mt-4 md:mt-0 text-darkgray mb-4">
+                  Choose dates
+                </h1>
+              </div>
+              <ListingReservation
+                dateRange={dateRange}
+                onChangeDate={(value) => setDateRange(value)}
+                disabledDates={disabledDates}
+              />
             </div>
             <div>
-
-            <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8 text-darkgray">
-              <p>Choose Payment Method</p>
-              <AiFillCreditCard size={30} />
-            </div>
-            <div className="flex gap-24 justify-center mt-2">
-              <div className="widerIcon">
-                <FaCcPaypal size={60} style={{ color: "#FFC703" }} />
+              <div className=" mxs:text-twenty mobile:text-twentyfour font-bold flex justify-center gap-2 mt-8 text-darkgray">
+                <p>Choose Payment Method</p>
+                <AiFillCreditCard size={30} />
               </div>
-
-              <div className="flex widerIcon">
-                <div>
-                  <FaCcVisa size={60} style={{ color: "#375BDB" }} />
+              <div className="flex gap-24 justify-center mt-2">
+                <div className="widerIcon">
+                  <FaCcPaypal size={60} style={{ color: "#FFC703" }} />
                 </div>
-                <div>
-                  <FaCcMastercard size={60} style={{ color: "#D34121" }} />
+
+                <div className="flex widerIcon">
+                  <div>
+                    <FaCcVisa size={60} style={{ color: "#375BDB" }} />
+                  </div>
+                  <div>
+                    <FaCcMastercard size={60} style={{ color: "#D34121" }} />
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
 
           {/* // Right side */}
-          <div className="w-full md:w-1/2 flex space-between flex-col px-4 order-first md:order-last">
-            <div className="">
+          <div className="w-full md:w-1/2 flex space-between flex-col px-4 order-first md:order-last ">
+            <div>
               <ListingHead
                 imageSrc={[listing.imageSrc[0]]}
                 locationValue={listing.locationValue}
@@ -171,7 +178,7 @@ const categoriesForListing = useMemo(() => {
               />
             </div>
 
-            <div className="text-xl">
+            <div>
               <ListingInfo
                 title={listing.title}
                 user={listing.user}
