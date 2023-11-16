@@ -38,7 +38,7 @@ const RentModal = () => {
     reset
 } = useForm<FieldValues>({
     defaultValues: {
-        category: "",
+        categories: [],
         location: null,
         guestCount: 1,
         roomCount: 1,
@@ -49,7 +49,8 @@ const RentModal = () => {
         description: '',
         }
     });
-    const category = watch("category");
+    const selectedCategories = watch("categories");
+
     const location = watch('location');
     const guestCount = watch('guestCount');
     const roomCount = watch('roomCount');
@@ -65,6 +66,26 @@ const RentModal = () => {
             shouldTouch: true,
         })
     }
+
+    const toggleCategory = (selectedCategory: string) => {
+      const selectedCategories: string[] = watch("categories") || [];
+      if (selectedCategories.includes(selectedCategory)) {
+        // Category is already selected, remove it
+        const updatedCategories = selectedCategories.filter(
+          (category) => category !== selectedCategory
+        );
+        setValue("categories", updatedCategories);
+      } else {
+        // Category is not selected, add it
+        const updatedCategories = [...selectedCategories, selectedCategory];
+        setValue("categories", updatedCategories);
+      }
+    };
+    
+    
+    
+
+
     const onBack = () => {
         setStep((value) => value - 1);
     };
@@ -76,7 +97,7 @@ const RentModal = () => {
         return onNext();
       }
       setIsLoading(true);
-      axios.post('/api/listings', { ...data, imageSrc })
+      axios.post('/api/listings', { ...data, imageSrc, category: selectedCategories })
       .then(() => {
         toast.success('Listing Created!');
         router.refresh();
@@ -117,17 +138,18 @@ const RentModal = () => {
                     max-h-[50vh]
                     overflow-y-auto
                 ">
-          {categories.map((item) => (
-            <div key={item.label} className="col-span-1">
-              <CategoryInput
-                onClick={(category) =>
-                    setCustomValue('category', category)}
-                selected={category === item.label}
-                label={item.label}
-                icon={item.icon}
-              />
-            </div>
-          ))}
+        {categories.map((item) => (
+  <div key={item.label} className="col-span-1">
+   <CategoryInput
+  onClick={() => toggleCategory(item.label)}
+  selected={selectedCategories.includes(item.label)} // Check if the category is selected
+  label={item.label}
+  icon={item.icon}
+/>
+
+  </div>
+))}
+
         </div>
       </div>
     );

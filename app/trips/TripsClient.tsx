@@ -55,7 +55,7 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
         "
       >
         {reservations.map((reservation) => (
-          <AccountCard data={reservation.listing} reservation={reservation} />
+          <AccountCard key={reservation.id} data={reservation.listing} reservation={reservation} />
         ))}
       </div>
     </Container>

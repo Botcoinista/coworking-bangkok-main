@@ -4,13 +4,15 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
  
 import { GrLock } from 'react-icons/gr';
-import { FaMedal } from 'react-icons/fa';
+import { FaMedal, FaWifi } from 'react-icons/fa';
 import { TbToolsKitchen2 } from 'react-icons/tb';
 import { CgCoffee } from 'react-icons/cg';
 import { CgGym } from 'react-icons/cg';
 
+
 import CategoryBox from "../CategoryBox";
 import Container from '../Container';
+
 
 export const categories = [
     {
@@ -36,6 +38,11 @@ export const categories = [
       {
         label: 'GYM',
         icon: CgGym,
+        // description: 'This property has a gym!'
+      },
+      {
+        label: 'WIFI',
+        icon: FaWifi,
         // description: 'This property has a gym!'
       },
      

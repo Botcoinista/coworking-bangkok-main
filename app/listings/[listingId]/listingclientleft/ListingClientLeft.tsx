@@ -1,7 +1,7 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 import { IconType } from "react-icons";
 
 import ListingCategory from "../../../components/listings/ListingCategory";
@@ -9,9 +9,9 @@ import Heading from "../../../components/Heading";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaRegEnvelope } from "react-icons/fa";
 
+
 interface ListingInfoProps {
   title: string;
-  email?: string;
   user: SafeUser;
   description?: string;
   category:
@@ -25,7 +25,6 @@ interface ListingInfoProps {
 
 const ListingInfo = ({
   title,
-  email,
   description,
   category,
   locationValue,
@@ -53,9 +52,9 @@ const ListingInfo = ({
           <ListingCategory
             icon={category.icon}
             label={category.label}
-            iconClassName="text-blue-500 hover:text-blue-700"
           />
         )}
+       
       </div>
       <div className="text-lg font-light text-gray mt-8">{description}</div>
     </div>

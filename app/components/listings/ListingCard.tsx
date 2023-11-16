@@ -10,8 +10,7 @@ import HeartButton from "../HeartButton";
 import { IoLocationOutline } from "react-icons/io5";
 import Button from "../Button";
 import RatingStar from "../RatingStar";
-import { IconType } from "react-icons";
-import TuckTuckBanner from "../TuckTuckBanner";
+import { categories } from "../navbar/Categories";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -123,11 +122,39 @@ const ListingCard = ({
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
             <div className="font-rajhadi font-semibold text-lg mb-3">
-              {location?.region}, {location?.label}
+              {data.title}
             </div>
-            <div className="font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
-              <IoLocationOutline /> {reservationDate || data.category}
+            <div className=" font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
+              <IoLocationOutline />
+
+              {`${location?.region}, ${location?.label}`}
             </div>
+
+            <div className="flex flex-wrap justify-start items-center gap-1">
+              {data.category.map((item, index) => {
+                // Find the category object in the categories array
+                const categoryObject = categories.find(
+                  (category) => category.label === item
+                );
+
+                // Check if the category object exists and has an icon
+                if (categoryObject && categoryObject.icon) {
+                  // Render the icon component
+                  const IconComponent = categoryObject.icon;
+                  return (
+                    <span
+                      key={item}
+                      className="bg-white p-[2px] rounded-tr-lg rounded-bl-lg"
+                    >
+                      <IconComponent size={22} />
+                    </span>
+                  );
+                } else {
+                  return null; // Handle the case where the category is not found or doesn't have an icon
+                }
+              })}
+            </div>
+
             <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
               <div className="font-poppins font-bold">${price}</div>
               {!reservation && (
