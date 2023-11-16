@@ -19,7 +19,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import ListingHead from "../listings/ListingHead";
-import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
+import ListingInfo from "../listings/ListingInfo";
 import { categories } from "../navbar/Categories";
 import ReservationButton from "../ReservationButton";
 

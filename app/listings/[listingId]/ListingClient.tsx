@@ -6,17 +6,21 @@ import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
-import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
-
-import ListingClientRight from "../listingclientright/ListingClientRight";
+import ListingInfo from "@/app/components/listings/ListingInfo";
 
 import dynamic from "next/dynamic";
 import useCountries from "@/app/hooks/useCountries";
+import Pricing from "@/app/components/Pricing";
+import Button from "@/app/components/Button";
+import CheckoutModal from "@/app/components/modals/CheckoutModal";
+import ConfirmationModal from "@/app/components/modals/ConfirmationModal";
+import Ratings from "@/app/components/Ratings";
+import useCheckoutModal from "@/app/hooks/useCheckoutModal";
 
-const Map = dynamic(() => import("../../../components/Map"), {
+
+const Map = dynamic(() => import("../../components/Map"), {
   ssr: false,
 });
-
 
 interface ListingClientProps {
   reservations?: SafeReservation[];
@@ -30,29 +34,17 @@ interface ListingClientProps {
 const ListingClient = ({
   listing,
   currentUser,
-  // reservations = [],
+  
   locationValue,
 }: ListingClientProps) => {
-  
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
- 
+  const location = getByValue(locationValue);
+  const { isOpen, onOpen } = useCheckoutModal();
 
   const categoriesForListing = useMemo(() => {
-    // The useMemo hook is used to compute a value and memoize it.
-    // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
-  
     return categories.filter((item) => listing.category.includes(item.label));
-    // The code inside the useMemo function filters the 'categories' array based on a condition.
-    // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
-    // includes the 'item.label'. If it does, the 'item' is included in the result.
-  
   }, [listing.category]);
-  // The second argument to useMemo is an array of dependencies.
-  // When any of these dependencies change, useMemo will recompute the value.
-  // In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
-  
-    
 
   return (
     <Container>
@@ -75,13 +67,19 @@ const ListingClient = ({
           "
           >
             <div className="md:col-span-4">
-              <ListingInfo
-                title={listing.title}
-                user={listing.user}
-                categories={categoriesForListing}
-                description={listing.description}
-                locationValue={listing.locationValue}
-              />
+              <div className="col-span-4 flex flex-col gap-2">
+                <ListingInfo
+                  title={listing.title}
+                  user={listing.user}
+                  categories={categoriesForListing}
+                  description={listing.description}
+                  locationValue={listing.locationValue}
+                />
+
+                {/* <div className="text-lg font-light text-gray mt-8">
+                  {description}
+                </div> */}
+              </div>
               <div className="md:order-first order-last md:col-span-4 mt-20">
                 <Map center={coordinates} />
               </div>
@@ -94,11 +92,16 @@ const ListingClient = ({
               md:col-span-3             
               "
             >
-              <div className=" md:col-span-3">
-                <ListingClientRight
-                  currentUser={currentUser}
-                  listing={listing}
-                />
+              {/* RIGHTSIDE */}
+
+              <div>
+                <Pricing />
+                <Button label="Book now!" onClick={onOpen} />
+                {isOpen && (
+                  <CheckoutModal currentUser={currentUser} listing={listing} />
+                )}
+                {isOpen && <ConfirmationModal />}
+                <Ratings />
               </div>
             </div>
           </div>
