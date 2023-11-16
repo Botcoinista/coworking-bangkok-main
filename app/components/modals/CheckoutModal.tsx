@@ -98,20 +98,20 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
     }
   }, [dateRange, listing.price]);
 
-  const categoriesForListing = useMemo(() => {
-    // The useMemo hook is used to compute a value and memoize it.
-    // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
-  
-    return categories.filter((item) => listing.category.includes(item.label));
-    // The code inside the useMemo function filters the 'categories' array based on a condition.
-    // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
-    // includes the 'item.label'. If it does, the 'item' is included in the result.
-  
-  }, [listing.category]);
-  // The second argument to useMemo is an array of dependencies.
-  // When any of these dependencies change, useMemo will recompute the value.
-  // In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
-  
+const categoriesForListing = useMemo(() => {
+  // The useMemo hook is used to compute a value and memoize it.
+  // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
+
+  return categories.filter((item) => listing.category.includes(item.label));
+  // The code inside the useMemo function filters the 'categories' array based on a condition.
+  // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
+  // includes the 'item.label'. If it does, the 'item' is included in the result.
+
+}, [listing.category]);
+// The second argument to useMemo is an array of dependencies.
+// When any of these dependencies change, useMemo will recompute the value.
+// In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
+
   
 
   return (

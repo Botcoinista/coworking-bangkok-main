@@ -32,6 +32,8 @@ const ListingInfo = ({
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
 
+  
+
   return (
     <div className="col-span-4 flex flex-col gap-2">
       <Heading
