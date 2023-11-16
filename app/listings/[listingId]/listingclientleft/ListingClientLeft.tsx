@@ -14,11 +14,11 @@ interface ListingInfoProps {
   title: string;
   user: SafeUser;
   description?: string;
-  category:
-    | {
+  categories?:
+    | Array<{
         icon: IconType;
         label: string;
-      }
+      }> 
     | undefined;
   locationValue: string;
 }
@@ -26,7 +26,7 @@ interface ListingInfoProps {
 const ListingInfo = ({
   title,
   description,
-  category,
+  categories,
   locationValue,
 }: ListingInfoProps) => {
   const { getByValue } = useCountries();
@@ -47,14 +47,14 @@ const ListingInfo = ({
           </span>
         </div>
       </div>
-      <div className=" border-[1px] w-[fit-content] rounded-tr-lg rounded-bl-lg p-1">
-        {category && (
-          <ListingCategory
-            icon={category.icon}
-            label={category.label}
-          />
-        )}
-       
+      {/* Render categories */}
+      <div className="flex flex-wrap gap-2 ">
+        {categories &&
+          categories.map((category, index) => (
+            <div key={index}>
+              <ListingCategory icon={category.icon} label={category.label} />
+            </div>
+          ))}
       </div>
       <div className="text-lg font-light text-gray mt-8">{description}</div>
     </div>

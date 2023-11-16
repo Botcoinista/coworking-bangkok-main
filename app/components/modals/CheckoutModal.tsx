@@ -9,30 +9,19 @@ import React, {
 import { useRouter } from "next/navigation";
 import useCheckoutModal from "@/app/hooks/useCheckoutModal";
 import ListingReservation from "../listings/ListingReservation";
-import Calender from "../inputs/Calender";
 import { differenceInCalendarDays } from "date-fns";
 import { Range } from "react-date-range";
 import { SafeListing, SafeUser } from "@/app/types";
-
 import BookingModal from "./BookingModal";
-import {
-  FaCcMastercard,
-  FaCcPaypal,
-  FaCcVisa,
-  FaRegEnvelope,
-} from "react-icons/fa";
+import { FaCcMastercard, FaCcPaypal, FaCcVisa, } from "react-icons/fa";
 import { AiFillCreditCard } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { on } from "events";
-import { useStateManager } from "react-select";
 import ListingHead from "../listings/ListingHead";
 import ListingInfo from "@/app/listings/[listingId]/listingclientleft/ListingClientLeft";
 import { categories } from "../navbar/Categories";
-import Button from "../Button";
 import ReservationButton from "../ReservationButton";
-import Email from "../Email";
 
 
 const initialDateRange = {
@@ -109,9 +98,20 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
     }
   }, [dateRange, listing.price]);
 
-  const category = useMemo(() => {
-    return categories.find((item) => listing.category.includes(item.label));
+  const categoriesForListing = useMemo(() => {
+    // The useMemo hook is used to compute a value and memoize it.
+    // It will only recompute the value when the dependencies (in this case, [listing.category]) change.
+  
+    return categories.filter((item) => listing.category.includes(item.label));
+    // The code inside the useMemo function filters the 'categories' array based on a condition.
+    // It iterates through each 'item' in the 'categories' array and checks if the 'listing.category'
+    // includes the 'item.label'. If it does, the 'item' is included in the result.
+  
   }, [listing.category]);
+  // The second argument to useMemo is an array of dependencies.
+  // When any of these dependencies change, useMemo will recompute the value.
+  // In this case, 'categoriesForListing' will be recomputed whenever 'listing.category' changes.
+  
   
 
   return (
@@ -175,7 +175,7 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
               <ListingInfo
                 title={listing.title}
                 user={listing.user}
-                category={category}
+                categories={categoriesForListing}
                 locationValue={listing.locationValue}
               />
               <div className="order-first md:order-last">
