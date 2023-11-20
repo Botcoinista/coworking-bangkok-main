@@ -58,11 +58,12 @@ const ListingClient = ({
             className="
             grid
             grid-cols-1
-            md:grid-cols-7
+            md:grid-cols-12
             md:gap-10         
           "
           >
-            <div className="md:col-span-4">
+            {/* // LEFTSIDE */}
+            <div className="md:col-span-8">
               <div className="col-span-4 flex flex-col gap-2">
                 <ListingInfo
                   title={listing.title}
@@ -85,7 +86,7 @@ const ListingClient = ({
               className="
               mb-10
               md:order-last
-              md:col-span-3             
+              md:col-span-4             
               "
             >
               {/* RIGHTSIDE */}

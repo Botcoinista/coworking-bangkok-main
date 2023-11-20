@@ -10,11 +10,10 @@ import SecureIcon from "./SecureIcon";
 const Footer = () => {
   return (
     <footer
-      className="bg-gray-800 text-white p-4 md:px-20 pt-8 flex flex-col justify-between px-8 "
+      className="text-white p-4 md:px-20 pt-8 px-8"
       style={{
         backgroundImage: "url(/images/Footer.png)",
         backgroundSize: "cover",
-        height: "1161px",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
