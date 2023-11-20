@@ -1,20 +1,16 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600700;800;900;&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 html,
 body,
 :root {
   height: 100%;
-  font-family: 'Poppins', 'rajhadi' 'sans-serif';
-};
-
+  font-family: "Poppins", "rajdhani" "sans-serif";
+}
 
 .leaflet-bottom,
 .leaflet-control,
@@ -42,14 +38,11 @@ body,
   height: 10px;
 }
 
-
-
-
 .homepagetitle-bangkok {
-color: #D9D9D9;
-font-style: normal;
-font-weight: 800;
-mix-blend-mode: difference;
+  color: #d9d9d9;
+  font-style: normal;
+  font-weight: 800;
+  mix-blend-mode: difference;
 }
 
 .homepagetitle {
@@ -57,9 +50,10 @@ mix-blend-mode: difference;
 }
 
 .widerIcon {
-  transform: scaleX(1.5); /* This stretches the icon 1.5 times its original width */
+  transform: scaleX(
+    1.5
+  ); /* This stretches the icon 1.5 times its original width */
 }
-
 
 .custom-shadow {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); /* Example values */

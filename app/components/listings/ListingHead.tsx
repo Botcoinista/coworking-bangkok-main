@@ -1,28 +1,18 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
-import Heading from "../Heading";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
-import { IoLocationOutline } from "react-icons/io5";
+
 
 interface ListingHeadProps {
-  title?: string;
-  email?: string;
   locationValue: string;
   imageSrc: string[];
-  id: string;
-  currentUser?: SafeUser | null;
 }
 
 const ListingHead = ({
-  title,
-  email,
   locationValue,
   imageSrc,
-  id,
-  currentUser,
 }: ListingHeadProps) => {
   const { getByValue } = useCountries();
 

@@ -32,19 +32,19 @@ const ListingInfo = ({
   const location = getByValue(locationValue);
 
   return (
-    <div className="col-span-4 flex flex-col gap-2">
+    <div className="col-span-4 flex flex-col gap-2 font-poppins font-light">
       <Heading
         title={title}
         icon={<IoLocationOutline size={16} className="text-semilightgray" />}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4 font-poppins font-light">
         <FaRegEnvelope size={16} className="mt-1 text-lightgray" />
         <span className="flex text-custombase text-lightgray">
           bookings@coworkingbangkok.com
         </span>
       </div>
-      <div className="flex flex-wrap gap-2 ">
+      <div className="flex flex-wrap gap-2 font-rajdhani font-semibold">
         {categories &&
           categories.length > 0 &&
           categories.map((category, index) => (

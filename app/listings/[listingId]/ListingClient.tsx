@@ -50,11 +50,8 @@ const ListingClient = ({
       <div className="max-w-screen-4XL mx-auto">
         <div className="flex flex-col gap-12 ">
           <ListingHead
-            title={listing.title}
             imageSrc={listing.imageSrc}
             locationValue={listing.locationValue}
-            id={listing.id}
-            currentUser={currentUser}
           />
 
           <div

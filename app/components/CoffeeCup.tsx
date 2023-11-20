@@ -3,7 +3,7 @@ import React from "react";
 
 const CoffeeBanner = () => {
   return (
-    <div className="flex items-center bg-banner flex-col md:flex-row py-6 px-8">
+    <div className="flex items-center bg-banner flex-col md:flex-row py-6 px-8 mt-10">
       <div className="flex justify-center items-center w-full md:w-2/5">
         <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-white ">
           <div

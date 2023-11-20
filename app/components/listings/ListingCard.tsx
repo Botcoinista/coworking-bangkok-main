@@ -81,7 +81,7 @@ const ListingCard = ({
         className="
         flex
         flex-col
-        border-2
+        custom-shadow
         border-gray-900
         rounded-tr-4xl
         rounded-bl-4xl
@@ -121,10 +121,10 @@ const ListingCard = ({
             }}
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
-            <div className="font-rajhadi font-semibold text-lg mb-3">
+            <div className="leading-none font-rajdhani font-bold text-twentyfour mb-3 sm:text-twentyfour md:text-twentyfour lg:text-thirtytwo">
               {data.title}
             </div>
-            <div className=" font-rajhadi flex flex-row gap-1 font-light text-neutral-800 mb-3">
+            <div className=" flex flex-row gap-1 font-light text-gray mb-3 text-twenty sm:text-twenty md:text-twenty lg:text-twenty xl:text-twentyeight leading-none">
               <IoLocationOutline />
 
               {`${location?.region}, ${location?.label}`}
@@ -144,7 +144,7 @@ const ListingCard = ({
                   return (
                     <span
                       key={item}
-                      className="bg-white p-[2px] rounded-tr-lg rounded-bl-lg"
+                      className="bg-white p-[2px] rounded-tr-lg rounded-bl-lg mb-3"
                     >
                       <IconComponent size={22} />
                     </span>
@@ -155,10 +155,10 @@ const ListingCard = ({
               })}
             </div>
 
-            <div className="flex flex-row items-center gap-1 bg-white p-1 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
-              <div className="font-poppins font-bold">${price}</div>
+            <div className="flex flex-row items-center gap-1 bg-white px-2 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
+              <div className="font-poppins font-bold ">{price} THB </div>
               {!reservation && (
-                <div className="font-poppins font-bold">/Week</div>
+                <div className="font-poppins font-bold ">/Week</div>
               )}
             </div>
           </div>
