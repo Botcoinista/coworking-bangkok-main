@@ -89,7 +89,7 @@ const ListingCard = ({
         h-full
         "
         style={{
-          height: "600px",
+          height: "400px",
         }}
       >
         <div
@@ -121,10 +121,10 @@ const ListingCard = ({
             }}
             className="absolute bottom-2 left-0 right-0 mx-2 border rounded-tr-3xl rounded-bl-3xl p-3 bg-red-100"
           >
-            <div className="leading-none font-rajdhani font-bold text-twentyfour mb-3 sm:text-twentyfour md:text-twentyfour lg:text-thirtytwo">
+            <div className="leading-none font-rajdhani font-bold text-twentyfour mb-3 sm:text-twentyfour md:text-twentyfour lg:text-twentyeight">
               {data.title}
             </div>
-            <div className=" flex flex-row gap-1 font-light text-gray mb-3 text-twenty sm:text-twenty md:text-twenty lg:text-twenty xl:text-twentyeight leading-none">
+            <div className=" flex flex-row gap-1 font-light text-gray mb-3 text-twenty sm:text-twenty md:text-twenty lg:text-twenty xl:text-twenty leading-none">
               <IoLocationOutline />
 
               {`${location?.region}, ${location?.label}`}
@@ -155,7 +155,7 @@ const ListingCard = ({
               })}
             </div>
 
-            <div className="flex flex-row items-center gap-1 bg-white px-2 rounded-tr-2xl rounded-bl-2xl w-1/2 justify-center ml-auto">
+            <div className="flex flex-row items-center gap-1 bg-white px-2 rounded-tr-2xl rounded-bl-2xl w-full justify-center ml-auto p-1">
               <div className="font-poppins font-bold ">{price} THB </div>
               {!reservation && (
                 <div className="font-poppins font-bold ">/Week</div>

@@ -12,13 +12,13 @@ const MenuItem = ({ onClick, label }: MenuItemProps) => {
             className="
                 text-sm
                 font-semibold
-                py-3
-                px-4
-                rounded-full
-                hover:bg-neutral-100
+                py-6
+                px-10
+                hover:bg-neutral-200
                 transition
                 cursor-pointer
-                "
+                text-twenty
+                min-w-full                "
                 >
             {label}
         </div>

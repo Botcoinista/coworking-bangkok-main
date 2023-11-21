@@ -118,6 +118,7 @@ const RegisterModal = () => {
           flex-row 
           items-center 
           gap-2
+          text-twentyfour
           "
         >
           <div>Already have an account?</div>

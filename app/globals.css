@@ -62,3 +62,18 @@ body,
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.35); /* Larger shadow on hover */
 }
 
+.bg-lightGreen {
+  background-color: #28A745; /* Dark green color */
+}
+
+.hover\:bg-darkGreen:hover {
+  background-color: #19d545; /* Light green color  */
+}
+
+.border-lightGreen {
+  border-color: #28A745; /* Dark green color */
+}
+
+.hover\:border-darkGreen:hover {
+  border-color: #19d545; /* Light green color */
+}

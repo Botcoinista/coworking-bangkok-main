@@ -1,7 +1,6 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
@@ -66,7 +65,7 @@ const LoginModal = () => {
 
     const bodyContent = (
       <div className="flex flex-col gap-4">
-        <Heading title="Welcome back" subtitle="Login to your account!" center />
+        <Heading title="Login" subtitle="Login to your account!" center />
         <Input
           id="email"
           label="Email"
@@ -116,6 +115,7 @@ const LoginModal = () => {
           flex-row 
           items-center 
           gap-2
+          text-twentyfour
           ">
             <div>Dont have an account yet?</div>
             <div

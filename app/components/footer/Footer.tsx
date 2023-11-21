@@ -21,8 +21,8 @@ const Footer = () => {
       <div className=" flex flex-col justify-between h-full"
       >
         <MainText />
-        <main className="flex">
-          <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-20 my-4 md:my-20">
+        <main>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-20 my-4 md:my-20">
             {/* Hide CustomersChoise on small screens */}
             <div className="hidden md:block">
               <CustomersChoise />

@@ -173,8 +173,6 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
               <ListingHead
                 imageSrc={[listing.imageSrc[0]]}
                 locationValue={listing.locationValue}
-                id={listing.id}
-                currentUser={currentUser}
               />
             </div>
 

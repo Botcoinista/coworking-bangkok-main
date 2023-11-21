@@ -3,7 +3,7 @@
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { BsFillPencilFill } from "react-icons/bs";
@@ -29,6 +29,14 @@ const AccountCard = ({
 }: AccountCardProps) => {
   const router = useRouter();
   const { getByValue } = useCountries();
+
+  // State to manage the visibility of full description
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // Function to toggle the description visibility
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
 
   const location = getByValue(data.locationValue);
 
@@ -68,11 +76,11 @@ const AccountCard = ({
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="flex bg-white sm:p-6 md:p-6 lg:p-6 mobile:p-2 rounded-lg custom-shadow cursor-pointer transition-shadow"
+      className="flex bg-white sm:p-6 md:p-6 lg:p-6 mobile:p-2 rounded-lg custom-shadow transition-shadow cursor-pointer"
     >
       <div
         className="
-      
+       
       aspect-square
       relative
       overflow-hidden
@@ -94,22 +102,26 @@ const AccountCard = ({
       "
         />
       </div>
-      <div className="flex flex-col justify-between flex-grow">
-        <div>
-          <div className="flex flex-row justify-between">
-            <h2 className="text-mobile sm:text-twenty md:text-thirtysix lg:text-fiftysix font-bold text-gray-800 mb-2">
+
+
+      <div className="flex flex-col justify-between flex-grow ">
+      <div className="flex flex-row justify-between">
+            <h2 className="text-mobile sm:text-twenty md:text-thirtysix lg:text-fortyeight leading-none font-bold mb-2">
               {data.title}
             </h2>
-            <div className="flex items-center space-x-2 text-gray-600 mb-20">
-
+            <div className="flex items-center space-x-2 mb-20">
+              <hr />
             </div>
             <BsFillPencilFill className="w-5 h-5 sm:w-8 sm:h-8" /> 
           </div>
-          <hr />
-          <p className="text-gray-600 mb-2 max-w-md hidden md:block md:text-twenty lg:text-twentyfour ">
-            {data.description}
-          </p>
-        </div>
+          {/* Description area with scrollable functionality */}
+          <div style={{ maxHeight: '150px', overflow: 'auto' }}>
+            <p className="mb-2 max-w-md hidden md:block md:text-twenty lg:text-twentyfour ">
+              {data.description}
+            </p>
+          </div>
+
+
         <div className="flex justify-between items-center mobile:text-custom-small md:text-twenty lg:text-twentyfour ">
           <p className="text-black-500 mb-2">{reservationDate}</p>
           <span className="text-black-500 font-bold ">${price} THB</span>

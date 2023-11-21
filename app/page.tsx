@@ -28,7 +28,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <Container>
         <div className="py-6 md:pt-20 md:pb-4 ">
           <ArraySlicer
-            listings={listings.slice(0, 3)}
+            listings={listings.slice(0, 4)}
             currentUser={currentUser}
           />
         </div>
@@ -37,7 +37,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <Container>
         <div className="py-6 md:pt-20 md:pb-4">
           <ArraySlicer
-            listings={listings.slice(3, 6)}
+            listings={listings.slice(4, 8)}
             currentUser={currentUser}
           />
         </div>
@@ -46,7 +46,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <Container>
         <div className="py-6 md:pt-20 md:pb-4">
           <ArraySlicer
-            listings={listings.slice(6, 9)}
+            listings={listings.slice(8, 12)}
             currentUser={currentUser}
           />
         </div>
@@ -54,7 +54,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <Container>
         <div className="py-6 md:pt-20 md:pb-4">
           <ArraySlicer
-            listings={listings.slice(9, 12)}
+            listings={listings.slice(12, 16)}
             currentUser={currentUser}
           />
         </div>

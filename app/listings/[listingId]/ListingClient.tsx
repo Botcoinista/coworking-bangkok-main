@@ -52,6 +52,7 @@ const ListingClient = ({
           <ListingHead
             imageSrc={listing.imageSrc}
             locationValue={listing.locationValue}
+            
           />
 
           <div

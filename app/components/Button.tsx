@@ -14,21 +14,24 @@ interface ButtonProps {
 const Button = ({ label, onClick, disabled, outline, small, icon: Icon }: ButtonProps) => {
   return (
     <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`
-    relative
-    disabled:opacity-70
-    disabled:cursor-not-allowed
-    rounded-tr-2xl
-    rounded-bl-2xl
-    hover:opacity-80
-    transition
-    w-full
-    ${outline ? 'bg-white' : 'bg-greenBtn'}
-    ${outline ? 'border-black' : 'border-greenBtn'}
-    ${outline ? 'text-black' : 'text-white'}
-    ${small ? 'py-1' : 'py-3'}
+    onClick={onClick}
+    disabled={disabled}
+    className={`
+      relative
+      disabled:opacity-70
+      disabled:cursor-not-allowed
+      rounded-tr-2xl
+      rounded-bl-2xl
+      hover:opacity-80
+      transition
+      text-twentyfour
+      w-full
+    
+   
+    ${outline ? 'bg-white hover:bg-black' : 'bg-lightGreen hover:bg-darkGreen'}
+    ${outline ? 'border-black hover:border-black' : 'border-lightGreen hover:border-darkGreen'}
+    ${outline ? 'text-black hover:text-white' : 'text-white'}
+    ${small ? 'py-5' : 'py-3'}
     ${small ? 'text-sm' : 'text-md'}
     ${small ? 'font-light' : 'font-semibold'}
     ${small ? 'border-[1px]' : 'border-2'}
@@ -40,6 +43,7 @@ const Button = ({ label, onClick, disabled, outline, small, icon: Icon }: Button
         absolute
         left-4
         top-3
+        
         "
         />
       )}

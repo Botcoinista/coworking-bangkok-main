@@ -149,11 +149,11 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                 />
                 <MenuItem
                   onClick={() => handleMenuItemClick("favorites")}
-                  label="My favorites"
+                  label="My Favorites"
                 />
                 <MenuItem
                   onClick={() => handleMenuItemClick("/reservations")}
-                  label="My reservations"
+                  label="My Reservations"
                 />
                 <MenuItem
                   onClick={() => handleMenuItemClick("/properties")}

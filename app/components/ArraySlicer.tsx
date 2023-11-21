@@ -5,9 +5,9 @@ interface ArraySlicerProps {
   currentUser: any;
 }
 const ArraySlicer = ({ listings, currentUser }: ArraySlicerProps) => {
-    const sliceListings = listings.slice(0, 3);
+    const sliceListings = listings.slice(0, 4);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-8">        {sliceListings.map((listing) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">        {sliceListings.map((listing) => (
             <ListingCard
             key={listing.id}
             data={listing}
