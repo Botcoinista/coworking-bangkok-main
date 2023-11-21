@@ -55,12 +55,15 @@ body,
   ); /* This stretches the icon 1.5 times its original width */
 }
 
+
 .custom-shadow {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); /* Example values */
 }
 .custom-shadow:hover {
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.35); /* Larger shadow on hover */
 }
+
+
 
 .bg-lightGreen {
   background-color: #28A745; /* Dark green color */

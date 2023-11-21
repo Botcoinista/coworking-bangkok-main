@@ -26,6 +26,7 @@ const Button = ({ label, onClick, disabled, outline, small, icon: Icon }: Button
       transition
       text-twentyfour
       w-full
+      font-poppins
     
    
     ${outline ? 'bg-white hover:bg-black' : 'bg-lightGreen hover:bg-darkGreen'}

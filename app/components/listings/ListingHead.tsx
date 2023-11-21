@@ -1,17 +1,14 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
-import Heading from "../Heading";
 import Image from "next/image";
-import HeartButton from "../HeartButton";
-import { IoLocationOutline } from "react-icons/io5";
+import { useState } from "react";
 
 interface ListingHeadProps {
   locationValue: string;
   imageSrc: string[];
-
 }
+
 
 const ListingHead = ({
   locationValue,
@@ -21,30 +18,30 @@ const ListingHead = ({
 
   const location = getByValue(locationValue);
 
+  const [mainImage, setMainImage] = useState(imageSrc[0])
+
+  const handleImageClick = (image: string) => setMainImage(image)
+
   return (
     <>
-      {/* Testar array images */}
-      <div className="w-full flex flex-col md:flex-row justify-center gap-x-1 overflow-hidden rounded-bl-3xl rounded-tr-3xl custom-listing-border-radius">
-        <div className=" w-full h-[30vh] md:h-[30vh] mb-1 overflow-hidden relative">
-          <div className="flex">
-            <Image
-              alt="Property Image"
-              src={imageSrc[0]}
-              layout="fill"
-              objectFit="cover"
-            />
-            {/* <div className="absolute top-5 right-5">
-                  <HeartButton listingId={id} currentUser={currentUser} />
-                </div> */}
-          </div>
+      <div className="w-full flex flex-col md:flex-row justify-center gap-1 overflow-hidden rounded-bl-3xl rounded-tr-3xl custom-listing-border-radius">
+        {/* Main image */}
+        <div className="w-full md:w-2/3 h-[30vh] overflow-hidden relative">
+          <Image
+            alt="Property Image"
+            src={mainImage}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
-  
-        <div className="flex flex-row md:flex-col gap-1 ">
-          <div className="flex gap-1">
-            {imageSrc.slice(1, 3).map((image, index) => (
+        {/* Secondary images */}
+        <div className="w-full md:w-1/2 flex flex-row md:flex-wrap">
+          {imageSrc.map((image, index) => (
+            image !== mainImage && (
               <div
                 key={index}
-                className="md:w-[15vw] w-[23vw] md:h-[15vh] h-[15vh] overflow-hidden relative"
+                className="w-1/2 h-[10vh] md:h-[15vh] overflow-hidden relative cursor-pointer "
+                onClick={() => handleImageClick(image)}
               >
                 <Image
                   alt={`Image ${index}`}
@@ -53,23 +50,8 @@ const ListingHead = ({
                   objectFit="cover"
                 />
               </div>
-            ))}
-          </div>
-          <div className="flex gap-1 ">
-            {imageSrc.slice(3, 5).map((image, index) => (
-              <div
-                key={index}
-                className="sm:w[5vw] md:w-[15vw] w-[23vw] md:h-[15] h-[15vh] overflow-hidden relative "
-              >
-                <Image
-                  alt={`Image ${index}`}
-                  src={image}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-            ))}
-          </div>
+            )
+          ))}
         </div>
       </div>
     </>
@@ -77,6 +59,4 @@ const ListingHead = ({
 };
 
 export default ListingHead;
-
-
 

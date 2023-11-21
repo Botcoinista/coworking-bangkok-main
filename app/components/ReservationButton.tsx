@@ -35,6 +35,7 @@ items-center
 justify-between
 font-semibold
 text-lg
+font-poppins
 ">
     <div>
         Total

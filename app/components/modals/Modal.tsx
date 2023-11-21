@@ -149,9 +149,9 @@ const Modal = ({
                     right-9
                     "
                 >
-                  <IoMdClose size={18} />
+                  <IoMdClose size={28} />
                 </button>
-                <div className="text-lg font-semibold">{title}</div>
+                {/* <div className="text-lg font-semibold">{title}</div> */}
               </div>
               {/*body*/}
               <div className="relative p-6 flex-auto">{body}</div>

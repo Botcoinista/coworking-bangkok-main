@@ -87,9 +87,9 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
         dateRange.endDate,
         dateRange.startDate
       );
-
+  
       let discount = 0; // No discount initially
-
+  
       // Apply a 10% discount for bookings of at least 7 days but less than 30 days
       if (dayCount >= 7 && dayCount < 30) {
         discount = 0.1; // 10% discount
@@ -98,17 +98,20 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
       else if (dayCount >= 30) {
         discount = 0.2; // 20% discount
       }
-
+  
       // Calculate the total price after discount
       if (dayCount && listing.price) {
         const originalTotal = dayCount * listing.price;
         const discountedTotal = originalTotal * (1 - discount);
-        setTotalPrice(discountedTotal);
+        const roundedTotal = Math.ceil(discountedTotal / 2) * 2; // Round up to nearest even number
+        setTotalPrice(roundedTotal);
       } else {
-        setTotalPrice(listing.price);
+        const roundedPrice = Math.ceil(listing.price / 2) * 2; // Round up single day price to nearest even number
+        setTotalPrice(roundedPrice);
       }
     }
   }, [dateRange, listing.price]);
+  
 
   const categoriesForListing = useMemo(() => {
     // The useMemo hook is used to compute a value and memoize it.

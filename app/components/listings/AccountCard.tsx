@@ -7,6 +7,7 @@ import { useCallback, useMemo, useState } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { BsFillPencilFill } from "react-icons/bs";
+import { IoTrashBinOutline } from "react-icons/io5";
 
 interface AccountCardProps {
   data: SafeListing;
@@ -73,6 +74,13 @@ const AccountCard = ({
     return `${format(start, 'MMM d')} - ${format(end, 'MMM d')}`;
   }, [reservation]);
 
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    const idToDelete = reservation ? reservation.id : data.id;
+    onAction?.(idToDelete);
+  };
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -112,7 +120,11 @@ const AccountCard = ({
             <div className="flex items-center space-x-2 mb-20">
               <hr />
             </div>
-            <BsFillPencilFill className="w-5 h-5 sm:w-8 sm:h-8" /> 
+            {/* <BsFillPencilFill className="w-5 h-5 sm:w-8 sm:h-8" />  */}
+            <button className="cursor-pointer w-5 h-5 sm:w-8 sm:h-8 hover:text-red" onClick={handleDelete}>
+            <IoTrashBinOutline className="w-5 h-5 sm:w-8 sm:h-8 " />
+          </button>
+
           </div>
           {/* Description area with scrollable functionality */}
           <div style={{ maxHeight: '150px', overflow: 'auto' }}>

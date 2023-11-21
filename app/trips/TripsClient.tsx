@@ -7,8 +7,8 @@ import Container from "../components/Container";
 import Heading from "../components/Heading";
 import { SafeReservation, SafeUser } from "../types";
 import AccountCard from "../components/listings/AccountCard";
-import ListingCard from "../components/listings/ListingCard";
 import { BiSolidUser } from "react-icons/bi";
+
 interface TripsClientProps {
   reservations: SafeReservation[];
   currentUser: SafeUser | null;
@@ -16,6 +16,7 @@ interface TripsClientProps {
 const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
+
   const onCancel = useCallback(
     (id: string) => {
       setDeletingId(id);
@@ -34,6 +35,7 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
     },
     [router]
   );
+
   return (
     <Container>
       <div className="flex text-darkgray gap-4 sm:text-fiftysix md:text-sixty lg:text-seventyeight mb-8">
@@ -55,7 +57,12 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
         "
       >
         {reservations.map((reservation) => (
-          <AccountCard key={reservation.id} data={reservation.listing} reservation={reservation} />
+          <AccountCard
+            key={reservation.id}
+            data={reservation.listing}
+            reservation={reservation}
+            onAction={() => onCancel(reservation.id)}
+          />
         ))}
       </div>
     </Container>
