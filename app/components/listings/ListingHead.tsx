@@ -1,46 +1,61 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useState } from "react";
 
 interface ListingHeadProps {
   locationValue: string;
   imageSrc: string[];
 }
 
-
-const ListingHead = ({
-  locationValue,
-  imageSrc,
-}: ListingHeadProps) => {
+const ListingHead = ({ locationValue, imageSrc }: ListingHeadProps) => {
   const { getByValue } = useCountries();
 
   const location = getByValue(locationValue);
 
-  const [mainImage, setMainImage] = useState(imageSrc[0])
+  const [mainImage, setMainImage] = useState(imageSrc[0]);
 
-  const handleImageClick = (image: string) => setMainImage(image)
+  const handleImageClick = (image: string) => setMainImage(image);
 
   return (
     <>
-      <div className="w-full flex flex-col md:flex-row justify-center gap-1 overflow-hidden rounded-bl-3xl rounded-tr-3xl custom-listing-border-radius">
-        {/* Main image */}
-        <div className="w-full md:w-2/3 h-[30vh] overflow-hidden relative">
-          <Image
-            alt="Property Image"
-            src={mainImage}
-            layout="fill"
-            objectFit="cover"
-          />
+      <div className="w-full flex flex-col md:flex-row justify-center gap-x-1 overflow-hidden rounded-bl-3xl rounded-tr-3xl custom-listing-border-radius">
+        <div className=" w-full h-[30vh] md:h-[30vh] overflow-hidden relative">
+          <div className="flex">
+            <Image
+              alt="Property Image"
+              src={mainImage}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
-        {/* Secondary images */}
-        <div className="w-full md:w-1/2 flex flex-row md:flex-wrap">
-          {imageSrc.map((image, index) => (
-            image !== mainImage && (
+
+        <div className="flex flex-row md:flex-col gap-1 cursor-pointer">
+          <div className="flex gap-1">
+            {imageSrc.slice(1, 3).map((image, index) =>
+            
+                <div
+                  key={index}
+                  className="xs:w-[20] sm:w-[25vw] md:w-[15vw] w-[20vw] md:h-[15vh] h-[15vh] overflow-hidden relative"
+                  onClick={() => handleImageClick(image)}
+                >
+                  <Image
+                    alt={`Image ${index}`}
+                    src={image}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+           
+            )}
+          </div>
+          <div className="flex gap-1 ">
+            {imageSrc.slice(3, 5).map((image, index) => (
               <div
                 key={index}
-                className="w-1/2 h-[10vh] md:h-[15vh] overflow-hidden relative cursor-pointer "
+                className="xs:w-[20] sm:w-[25vw] md:w-[15vw] w-[20vw] md:h-[15vh] h-[15vh] overflow-hidden relative"
                 onClick={() => handleImageClick(image)}
               >
                 <Image
@@ -50,8 +65,8 @@ const ListingHead = ({
                   objectFit="cover"
                 />
               </div>
-            )
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>
@@ -59,4 +74,3 @@ const ListingHead = ({
 };
 
 export default ListingHead;
-

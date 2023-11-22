@@ -32,7 +32,7 @@ const ConfirmationModal = () => {
       actionLabel="Close"
       body={
         <div
-          className="text-center text-seventyeight font-bold p-20 cursor-pointer"
+          className="text-center md:text-thirtysix lg:text-sixty text-fortyeight font-bold p-20 cursor-pointer"
           ref={modalRef}>
           <h1>
             Thank You for Your <span className="text-yellow">booking</span>

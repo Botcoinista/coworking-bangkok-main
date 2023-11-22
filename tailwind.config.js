@@ -33,7 +33,7 @@ module.exports = {
       },
       instagram: {
         'DEFAULT': "#E1306C",
-        500: "#E1306C",
+        '500': "#E1306C",
         // ... other shades if you want to define
       },
       backgroundImage: {
