@@ -105,6 +105,7 @@ const ListingCard = ({
                 fill
                 style={{ objectFit: "cover" }}
                 src={imageUrl}
+                sizes="(max-width: 640px) 100vw, 640px"
               />
             </div>
           ))}

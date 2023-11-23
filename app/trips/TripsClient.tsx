@@ -38,28 +38,34 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
 
   return (
     <Container>
-      <div className="flex text-darkgray gap-4 sm:text-fiftysix md:text-sixty lg:text-seventyeight mb-8">
-        <div className="">
-          <BiSolidUser className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-11 lg:h-11" />
+      <div className="flex xs:flex-col mxs:flex-col mb-10 gap-2 text-darkgray xs:text-thirtysix sm:text-fiftysix md:text-sixty lg:text-seventyeight justify-between ">
+        <div className="flex">
+          <BiSolidUser className="w-11 h-11 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-11 lg:h-11" />
+          <Heading title="Account" />
         </div>
-        <Heading title="Account" />
+        {currentUser && (
+          <div className="flex">
+            <div className="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
+            <div>
+              {/* Display information about the current user */}
+              <p className="font-poppins font-semibold text-custom-base lg:text-twenty">
+                {currentUser.email}
+              </p>
+              {/* Add other user information as needed */}
+            </div>
+          </div>
+        )}
       </div>
       <div className="bg-darkgray">
-        <div className="ml-5 text-white p-2 font-bold text-mobile-twentyfour lg:text-thirtyeight mb-6">
+        <div className="ml-5 text-white p-2 mb-5 font-bold md:text-twentyfour lg:text-thirtysix">
           Bookings
         </div>
       </div>
-      <div
-        className="
-                flex
-                flex-col
-                gap-8
-        "
-      >
+      <div className="flex flex-col gap-8">
         {reservations.map((reservation) => (
           <AccountCard
-            key={reservation.id}
             data={reservation.listing}
+            key={reservation.id}
             reservation={reservation}
             onAction={() => onCancel(reservation.id)}
           />
@@ -67,5 +73,5 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
       </div>
     </Container>
   );
-};
-export default TripsClient;
+}
+export default TripsClient

@@ -101,6 +101,7 @@ const AccountCard = ({
           fill
           alt="Listing"
           src={data.imageSrc[0]}
+          sizes="(max-width: 600px) 50vw, 600px"
           className="
         object-cover
         h-full

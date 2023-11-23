@@ -186,7 +186,7 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
                 categories={categoriesForListing}
                 locationValue={listing.locationValue}
               />
-              <div className="order-first md:order-last">
+              <div className=" md:order-last hidden md:block">
                 <ReservationButton
                   disabled={isLoading}
                   totalPrice={totalPrice}
@@ -195,6 +195,13 @@ const CheckoutModal = ({ listing, currentUser }: CheckoutModalProps) => {
               </div>
             </div>
           </div>
+              <div className="order-last md:hidden">
+                <ReservationButton
+                  disabled={isLoading}
+                  totalPrice={totalPrice}
+                  onSubmit={onCreateReservation}
+                />
+              </div>
         </div>
       }
     />

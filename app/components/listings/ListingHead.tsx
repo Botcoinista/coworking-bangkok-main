@@ -26,8 +26,10 @@ const ListingHead = ({ locationValue, imageSrc }: ListingHeadProps) => {
             <Image
               alt="Property Image"
               src={mainImage}
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover "
+              sizes="(max-width: 640px) 100vw, 640px"
+              priority
             />
           </div>
         </div>
@@ -44,8 +46,10 @@ const ListingHead = ({ locationValue, imageSrc }: ListingHeadProps) => {
                   <Image
                     alt={`Image ${index}`}
                     src={image}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    className="object-cover "
+                    sizes="(max-width: 640px) 100vw, 640px"
+                    priority
                   />
                 </div>
            
@@ -61,8 +65,10 @@ const ListingHead = ({ locationValue, imageSrc }: ListingHeadProps) => {
                 <Image
                   alt={`Image ${index}`}
                   src={image}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  className="object-cover "
+                  sizes="(max-width: 640px) 100vw, 640px"
+                  priority
                 />
               </div>
             ))}
